@@ -11,7 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Abstract\IBrandDal.cs" />
     <Compile Include="Abstract\ICarDal.cs" />
+    <Compile Include="Abstract\IColorDal.cs" />
+    <Compile Include="Abstract\IEntityRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.11" />
   </ItemGroup>
 
   <ItemGroup>

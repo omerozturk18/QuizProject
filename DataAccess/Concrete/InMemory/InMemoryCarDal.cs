@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete.InMemory
@@ -42,23 +43,16 @@ namespace DataAccess.Concrete.InMemory
             Console.WriteLine("Araba Güncellendi");
         }
 
-        public List<Car> GetById(Car car)
-        {
-           return _car.Where(c => c.CarId == car.CarId).ToList();
-        }
-        public List<Car> GetAll()
+
+
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
         {
             return _car;
         }
 
-        public List<Car> GetByBrand(int brandId)
+        public Car Get(Expression<Func<Car, bool>> filter)
         {
-           return _car.Where(c => c.BrandId ==brandId).ToList();
-        }
-
-        public List<Car> GetByColor(int colorId)
-        {
-            return _car.Where(c => c.ColorId == colorId).ToList();
+            throw new NotImplementedException();
         }
     }
 }
