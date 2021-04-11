@@ -10,39 +10,64 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-           // CarManager carManager = new CarManager(new InMemoryCarDal());
-            CarManager carManager = new CarManager(new EfCarDal());
+            // CarTest();
+            //  BrandTest();
+            ColorTest();
 
-                //foreach(var car in carManager.GetCarsByBrandId(2))
-                //{
-                //    Console.WriteLine(car.Description + " BrandId: " + car.BrandId);
-                //}
+        }
 
-                //foreach(var car in carManager.GetCarsByColorId(1))
-                //{
-                //    Console.WriteLine(car.Description + " ColorId: " + car.ColorId);
-                //}
+        private static void BrandTest()
+        {
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
 
-                //foreach(var car in carManager.GetByDailyPrice(2, 400))
-                //{
-                //    Console.WriteLine(car.Description + " DailyPrice: " + car.DailyPrice);
-                //}
-
-                //carManager.AddCar(new Car()
-                //{
-                //    CarId = 4,
-                //    BrandId = 1,
-                //    ColorId = 3,
-                //    DailyPrice = 200,
-                //    Description = "Suv",
-                //    ModelYear = "2016"
-                //});
-
-            foreach (var car in carManager.GetAll())
+            foreach (var brand in brandManager.GetAll())
             {
-                Console.WriteLine(car.Description);
+                Console.WriteLine(brand.BrandId+"-"+brand.BrandName);
             }
+        }
+        private static void ColorTest()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
 
+            foreach (var color in colorManager.GetAll())
+            {
+                Console.WriteLine(color.ColorId+"-"+color.ColorName);
+            }
+        }
+
+        static void CarTest()
+        {
+            // CarManager carManager = new CarManager(new InMemoryCarDal());
+            CarManager carManager = new CarManager(new EfCarDal());
+            //foreach (var car in carManager.GetByBrandId(2))
+            //{
+            //    Console.WriteLine(car.Description + " BrandId: " + car.BrandId);
+            //}
+
+            //foreach (var car in carManager.GetByColorId(1))
+            //{
+            //    Console.WriteLine(car.Description + " ColorId: " + car.ColorId);
+            //}
+
+            //foreach(var car in carManager.GetByDailyPrice(2, 400))
+            //{
+            //    Console.WriteLine(car.Description + " DailyPrice: " + car.DailyPrice);
+            //}
+
+            //carManager.AddCar(new Car()
+            //{
+            //    CarId = 5,
+            //    BrandId = 2,
+            //    ColorId = 4,
+            //    DailyPrice = 150,
+            //    Description = "Deneme",
+            //    ModelYear = "2011"
+            //});
+
+            foreach (var car in carManager.GetCarDetails())
+            {
+                Console.WriteLine(car.Description+"/"+car.BrandName);
+            }
         }
     }
 }
