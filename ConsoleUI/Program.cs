@@ -10,9 +10,9 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            // CarTest();
+            CarTest();
             //  BrandTest();
-            ColorTest();
+            //ColorTest();
 
         }
 
@@ -63,11 +63,21 @@ namespace ConsoleUI
             //    Description = "Deneme",
             //    ModelYear = "2011"
             //});
+            var result = carManager.GetCarDetails();
 
-            foreach (var car in carManager.GetCarDetails())
+            if (result.Success)
             {
-                Console.WriteLine(car.Description+"/"+car.BrandName);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.Description+"/"+car.BrandName);
+                }
+                Console.WriteLine(result.Message);
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+            
         }
     }
 }
