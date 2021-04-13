@@ -6,12 +6,14 @@ namespace Business.Constants
 {
     public static class Messages
     {
-        public static string CarAdded = "Araba Eklendi";
-        public static string CarDeleted = "Araba Silindi";
-        public static string CarUpdated = "Araba Güncellendi";
+        public static string Added = " Eklendi";
+        public static string Deleted = " Silindi";
+        public static string Updated = " Güncellendi";
         public static string CarDescriptionInvalid = "Araba Açıklaması Geçersiz";
-        public static string CarListed = "Arabalar Listelendi";
+        public static string Listed = " Listelendi";
         public static string ErrorCarListed = "Arabalar Listelenemedi";
         public static string MainTenanceTime = "Bakım Zamanı";
+        public static string PassLengt = "Şifre Uzuluğu Min. 6 Karakter Olmalı";
+        public static string RentalFail = "Bu Araç Kirada";
     }
 }
