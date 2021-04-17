@@ -15,5 +15,7 @@ namespace Business.Constants
         public static string MainTenanceTime = "Bakım Zamanı";
         public static string PassLengt = "Şifre Uzuluğu Min. 6 Karakter Olmalı";
         public static string RentalFail = "Bu Araç Kirada";
+        public static string CarCountOfBrandError="Bu markada en fazla 15 araç olabilir";
+        public static string CarImageLimited="Bir aracın e fazla 5 resmi olabilir";
     }
 }
