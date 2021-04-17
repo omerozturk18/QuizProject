@@ -13,7 +13,6 @@
   <ItemGroup>
     <Compile Include="Abstract\IBrandDal.cs" />
     <Compile Include="Abstract\ICarDal.cs" />
-    <Compile Include="Abstract\ICarImageDal.cs" />
     <Compile Include="Abstract\IColorDal.cs" />
     <Compile Include="Abstract\ICustomerDal.cs" />
     <Compile Include="Abstract\IRentalDal.cs" />
