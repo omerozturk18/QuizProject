@@ -31,7 +31,7 @@ namespace Business.Concrete
                 return result;
             }
             carImage.ImagePath = FileHelper.Add(file);
-            carImage.Date = DateTime.Now;
+            carImage.ImageUploadDate = DateTime.Now;
             _carImageDal.Add(carImage);
             return new SuccessResult();
         }
@@ -66,7 +66,7 @@ namespace Business.Concrete
                 return result;
             }
             carImage.ImagePath = FileHelper.Update(carImage.ImagePath, file);
-            carImage.Date = DateTime.Now;
+            carImage.ImageUploadDate = DateTime.Now;
             _carImageDal.Update(carImage);
             return new SuccessResult();
         }

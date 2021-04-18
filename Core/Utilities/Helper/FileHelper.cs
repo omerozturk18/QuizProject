@@ -84,7 +84,7 @@ namespace Core.Utilities.Helper
 
             return (result, $"\\Images\\{creatingUniqueFilename}");
 
-
         }
+
     }
 }
