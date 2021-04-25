@@ -38,7 +38,7 @@ namespace Business.Concrete
 
         public IResult Delete(CarImage carImage)
         {
-            FileHelper.Delete(_carImageDal.Get(i => i.ImageId == carImage.ImageId).ImagePath);
+            FileHelper.Delete(_carImageDal.Get(i => i.Id == carImage.Id).ImagePath);
             _carImageDal.Delete(carImage);
             return new SuccessResult();
         }
@@ -55,7 +55,7 @@ namespace Business.Concrete
 
         public IDataResult<CarImage> GetById(int carImageId)
         {
-            return new SuccessDataResult<CarImage>(_carImageDal.Get(i=>i.ImageId==carImageId));
+            return new SuccessDataResult<CarImage>(_carImageDal.Get(i=>i.Id==carImageId));
         }
 
         public IResult Update(IFormFile file, CarImage carImage)
