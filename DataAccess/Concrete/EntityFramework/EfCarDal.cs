@@ -2,12 +2,8 @@
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -20,6 +16,8 @@ namespace DataAccess.Concrete.EntityFramework
                 var result = from car in context.Cars
                              join b in context.Brands on car.BrandId equals b.BrandId
                              join c in context.Colors on car.ColorId equals c.ColorId
+                             join cI in context.CarImages on car.CarId equals cI.CarId into gr
+                             from cI in gr.DefaultIfEmpty()
                              select new CarDetailDto
                              {
                                  CarId = car.CarId,
@@ -27,7 +25,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  ColorName = c.ColorName,
                                  ModelYear = car.ModelYear,
                                  DailyPrice = car.DailyPrice,
-                                 Description = car.Description
+                                 Description = car.Description,
+                                 CarImage = cI
                              };
                 return result.ToList();
             }

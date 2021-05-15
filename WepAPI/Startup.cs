@@ -44,6 +44,9 @@ namespace WepAPI
             //Bizim yerimize newleme iþlei yapar AddSingleton IX istedðinde X ver
             /* services.AddSingleton<IBrandService, BrandManager>();
              services.AddSingleton<IBrandDal, EfBrandDal>();*/
+
+            services.AddCors();
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -73,6 +76,8 @@ namespace WepAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());//adressden gelene tüm operasyonlara izin verir 
 
             app.UseHttpsRedirection();
 

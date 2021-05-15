@@ -69,7 +69,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c=>c.BrandId==id));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c=>c.BrandId==id), Messages.Listed);
         }
 
         public IDataResult<List<Car>> GetCarsByColorId(int id)

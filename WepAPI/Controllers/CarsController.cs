@@ -13,7 +13,7 @@ namespace WepAPI.Controllers
     [ApiController]
     public class CarsController : ControllerBase
     {
-        ICarService _carService;
+        private readonly ICarService _carService;
 
         public CarsController(ICarService carService)
         {
@@ -68,6 +68,27 @@ namespace WepAPI.Controllers
         public IActionResult Delete(Car car)
         {
             var result = _carService.Delete(car);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getCarsDetails")]
+        public IActionResult GetCarsDetails()
+        {
+            var result = _carService.GetCarDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getByBrandId")]
+        public IActionResult GetByBrandId(int brandId)
+        {
+            var result = _carService.GetCarsByBrandId(brandId);
             if (result.Success)
             {
                 return Ok(result);
