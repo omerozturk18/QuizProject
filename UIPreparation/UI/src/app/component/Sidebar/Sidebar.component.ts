@@ -6,22 +6,26 @@ import { BrandService } from 'src/app/services/brand.service';
 import { ColorService } from 'src/app/services/color.service';
 
 @Component({
-  selector: 'app-BrandList',
-  templateUrl: './BrandList.component.html',
-  styleUrls: ['./BrandList.component.css']
+  selector: 'app-Sidebar',
+  templateUrl: './Sidebar.component.html',
+  styleUrls: ['./Sidebar.component.css']
 })
-export class BrandListComponent implements OnInit {
+export class SidebarComponent implements OnInit {
+
 
   brands:Brand[]=[];
+  colors:Color[]=[];
 
   constructor(
     private activatedRoute:ActivatedRoute,
     private brandService:BrandService,
+    private colorService:ColorService
     ) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params=>{
       this.getBrands();
+      this.getColors();
     });
 
   }
@@ -30,5 +34,9 @@ export class BrandListComponent implements OnInit {
       this.brands=response.data;
     });
   }
-
+  getColors(){
+    this.colorService.getColors().subscribe(response=>{
+      this.colors=response.data;
+    });
+  }
 }

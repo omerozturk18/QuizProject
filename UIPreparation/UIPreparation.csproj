@@ -6,11 +6,8 @@
 
   <ItemGroup>
     <Compile Remove="%2a%2a\**" />
-    <Compile Remove="UI\documentation\**" />
     <EmbeddedResource Remove="%2a%2a\**" />
-    <EmbeddedResource Remove="UI\documentation\**" />
     <None Remove="%2a%2a\**" />
-    <None Remove="UI\documentation\**" />
   </ItemGroup>
 
 </Project>

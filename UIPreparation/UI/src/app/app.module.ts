@@ -17,6 +17,7 @@ import { CarColorListComponent } from './Component/CarColor/CarColorList/CarColo
 import { CarColorEditComponent } from './Component/CarColor/CarColorEdit/CarColorEdit.component';
 import { CustomerListComponent } from './Component/Customer/CustomerList/CustomerList.component';
 import { CustomerEditComponent } from './Component/Customer/CustomerEdit/CustomerEdit.component';
+import { SidebarComponent } from './Component/Sidebar/Sidebar.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CustomerEditComponent } from './Component/Customer/CustomerEdit/Custome
     RentalListComponent,
     RentalEditComponent,
     NavBarComponent,
+    SidebarComponent,
 
   ],
   imports: [

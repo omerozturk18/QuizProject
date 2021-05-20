@@ -31,7 +31,7 @@ export class CarService {
   }
   getCarsDetails():Observable<ListResponseModel<CarDetail>> {
     debugger;
-    return this.httpClient.get<ListResponseModel<CarDetail>>("https://localhost:44383/api/cars/getCarsDetails");
+    return this.httpClient.get<ListResponseModel<CarDetail>>(this.apiUrl +"cars/getCarsDetails");
   }
 
 }
