@@ -12,6 +12,10 @@
 
   <ItemGroup>
     <Compile Include="Abstract\IBrandDal.cs" />
+    <Compile Include="Abstract\IAnswerDal.cs" />
+    <Compile Include="Abstract\IUserAnswerDal.cs" />
+    <Compile Include="Abstract\IQuizDal - Copy.cs" />
+    <Compile Include="Abstract\IQuestionDal.cs" />
     <Compile Include="Abstract\ICarDal.cs" />
     <Compile Include="Abstract\ICarImageDal.cs" />
     <Compile Include="Abstract\IColorDal.cs" />

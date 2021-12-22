@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ReCapFrontEnd": {
+    "QuizUIProject": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,48 +17,22 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ReCapFrontEnd",
+            "outputPath": "dist/QuizUIProject",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./src/assets/css/style.css",
-              "./src/assets/vendors/mdi/css/materialdesignicons.min.css",
-              "./src/assets/vendors/css/vendor.bundle.base.css"
+              "src/styles.css"
             ],
-            "scripts": [
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "./src/assets/vendors/js/vendor.bundle.base.js",
-              "./src/assets/vendors/chart.js/Chart.min.js",
-              "./src/assets/js/off-canvas.js",
-              "./src/assets/js/hoverable-collapse.js",
-              "./src/assets/js/misc.js",
-              "./src/assets/js/dashboard.js",
-              "./src/assets/js/todolist.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -70,25 +44,42 @@
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
                 }
-              ]
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "ReCapFrontEnd:build"
-          },
           "configurations": {
             "production": {
-              "browserTarget": "ReCapFrontEnd:build:production"
+              "browserTarget": "QuizUIProject:build:production"
+            },
+            "development": {
+              "browserTarget": "QuizUIProject:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ReCapFrontEnd:build"
+            "browserTarget": "QuizUIProject:build"
           }
         },
         "test": {
@@ -107,34 +98,9 @@
             ],
             "scripts": []
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ReCapFrontEnd:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ReCapFrontEnd:serve:production"
-            }
-          }
         }
       }
     }
   },
-  "defaultProject": "ReCapFrontEnd"
+  "defaultProject": "QuizUIProject"
 }

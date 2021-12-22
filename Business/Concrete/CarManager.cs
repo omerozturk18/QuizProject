@@ -93,6 +93,10 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.Listed);
         }
+        public IDataResult<List<CarDetailDto>> GetCarDetailById(int carId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(x=>x.CarId==carId), Messages.Listed);
+        }
         private IResult CheckIfCarCountOfBrandCorrect(int brandId)
         {
             var result = _carDal.GetAll(c=>c.BrandId==brandId).Count;

@@ -1,0 +1,150 @@
+<div class="container-fluid bg-light vh-100 pl-0" *ngIf="true">
+  <div class="bd-example" style="height: 90%;">
+    <div class="row">
+      <nav class="col-12 navbar navbar-expand-lg bg-white d-flex justify-content-center"
+        style="border-bottom:3px #dee2e6 solid">
+        <p class="text-center mb-0" style="font-size:45px;" id="question">
+          question 1
+        </p>
+      </nav>
+    </div>
+    <div class="row  mr-0 font-weight-bold quizz" id="question-counter">
+      <span class="badge badge-danger pl-4 pr-4 pt-3" style="border-radius: 0px 0px 50px">
+        <h2>1 of 10</h2>
+      </span>
+    </div>
+    <div class="row">
+      <div class="col-2 p-4 m-4">
+        <span class="badge badge-primary rounded-circle px-4 py-3">
+          <h1>10</h1>
+        </span>
+      </div>
+      <div class="col-7 d-flex justify-content-center">
+        <img src="../../../assets/images/triangle.svg" class="d-block w-30 pb-2" alt="question-image" width="250rem">
+      </div>
+    </div>
+    <div class="row ml-1">
+      <div class="col pl-1 pr-1">
+        <button type="button" class="btn btn-danger mb-2 d-flex w-100" style="height: 80px;">
+          <div class="col-2 shad"><b>A</b></div>
+          <div class="col shad text-left">option AAAAA</div>
+        </button>
+      </div>
+      <div class="col pl-1 pr-1">
+        <button type="button" class="btn btn-primary d-flex w-100" style="height: 80px;">
+          <div class="col-2 shad"><b>B</b></div>
+          <div class="col shad text-left">option BBBBB</div>
+        </button>
+      </div>
+    </div>
+    <div class="row ml-1">
+      <div class="col pl-1 pr-1">
+        <button type="button" class="btn btn-warning mb-2 d-flex w-100" style="height: 80px;">
+          <div class="col-2 shad"><b>C</b></div>
+          <div class="col shad text-left">option CCCCC</div>
+        </button>
+      </div>
+      <div class="col pl-1 pr-1">
+        <button type="button" class="btn btn-success d-flex w-100" style="height: 80px;">
+          <div class="col-2 shad"><b>D</b></div>
+          <div class="col shad text-left">option DDDDD</div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <nav style="height: 10%;" class="navbar navbar-expand-lg bg-white mb-4 ml-3 pb-4 d-flex justify-content-start">
+    <p class="text-left mb-0 quizz" style="font-size:20px;">
+      Join at <b>Quizz</b> with Game PIN: <b id="game-pin"></b>
+    </p>
+  </nav>
+</div>
+
+<div class="container-fluid bg-success vh-100 pb-2" *ngIf="true">
+  <div class="bd-example" style="height: 90%;">
+    <div class="row">
+      <nav class="col-12 navbar navbar-expand-lg bg-white d-flex justify-content-center"
+        style="border-bottom:3px #dee2e6 solid">
+        <p class="text-center mb-0" style="font-size:45px;" id="question">
+        </p>
+      </nav>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12 d-flex justify-content-center">
+        <img src="../../../assets/images/quizz.svg" class="d-block w-30 pb-2" alt="question-image" width="250rem">
+      </div>
+    </div>
+    <!-- Cevap Verildi -->
+    <div class="row  px-4 m-4">
+      <div class="col m-4 px-4">
+      </div>
+    </div>
+    <!-- Doğru Cevap -->
+    <div class="row  px-4 m-4">
+      <div class="col m-4 px-4">
+      </div>
+    </div>
+    <!-- Yanlış Cevap -->
+    <div class="row  px-4 m-4">
+      <div class="col m-4 px-4">
+      </div>
+    </div>
+  </div>
+  <nav style="height: 10%;" class="navbar navbar-expand-lg bg-white mb-4 ml-3 pb-4 d-flex justify-content-start">
+    <p class="text-left mb-0 quizz" style="font-size:20px;">
+      Join at <b>Quizz</b> with Game PIN: <b id="game-pin"></b>
+    </p>
+  </nav>
+</div>
+
+
+
+<div class="container-fluid bg-info vh-100 mt-4" *ngIf="true">
+  <div class="bd-example mt-4 pt-4">
+    <!-- <div class="row">
+      <nav class="col-12 navbar navbar-expand-lg bg-white d-flex justify-content-center"
+        style="border-bottom:3px #dee2e6 solid">
+        <p class="text-center mb-0" style="font-size:45px;" id="question">
+          question 1
+        </p>
+      </nav>
+    </div>
+    <div class="row  mr-0font-weight-bold quizz" id="question-counter">
+      <span class="badge badge-danger pl-4 pr-4 pt-3" style="border-radius: 0px 0px 50px"><h2>1 of 10</h2></span>
+      </div> -->
+    <div class="row mt-4">
+      <!-- <div class="col-2 p-4 m-4">
+        <span class="badge badge-primary rounded-circle px-4 py-3">
+          <h1>10</h1>
+        </span>
+      </div> -->
+      <div class="col-12 d-flex justify-content-center">
+        <img src="../../../assets/images/quizz.svg" class="d-block w-30 pb-2" alt="question-image" width="250rem">
+      </div>
+    </div>
+    <div class="row mr-4">
+      <div class="col d-flex align-items-center justify-content-end">
+        <button type="button" class="btn btn-success font-weight-bold" style="font-size:25px;">Sonraki</button>
+      </div>
+    </div>
+    <div class="row  px-4 m-4">
+      <div class="col m-4 px-4">
+        <table class="table text-white font-weight-bold quizz">
+          <thead>
+            <tr>
+              <th scope="col">Sıralama</th>
+              <th scope="col">Kullanıcı</th>
+              <th scope="col">Puan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>0 Puan</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

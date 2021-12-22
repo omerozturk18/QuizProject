@@ -31,7 +31,6 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Added);
         }
 
-        [SecuredOperation("brand.admin,admin")]
         public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);

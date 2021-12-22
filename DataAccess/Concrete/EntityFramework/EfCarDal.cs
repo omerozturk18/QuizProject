@@ -1,15 +1,17 @@
-﻿using Core.DataAccess.EntityFramework;
+﻿using System;
+using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, ReCapContext>, ICarDal
     {
-        public List<CarDetailDto> GetCarDetails()
+        public List<CarDetailDto> GetCarDetails(Expression<Func<CarDetailDto, bool>> filter = null)
         {
             using (ReCapContext context= new ReCapContext())
             {
@@ -28,8 +30,14 @@ namespace DataAccess.Concrete.EntityFramework
                                  Description = car.Description,
                                  CarImage = cI
                              };
-                return result.ToList();
+
+
+                return filter==null
+                ?result.ToList()
+                :result.Where(filter).ToList();
+
             }
         }
+
     }
 }
