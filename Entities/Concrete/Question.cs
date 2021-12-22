@@ -10,6 +10,8 @@ namespace Entities.Concrete
         public string QuizQuestion { get; set; }
         public string QuestionImage { get; set; }
         public TimeSpan QuestionDuration { get; set; }
+        public int QuestionScore { get; set; }
+        public bool IsTimeOver { get; set; }
         public int QuizId { get; set; }
         public DateTime OperationDate { get; set; }
         public QuestionType QuestionType { get; set; }

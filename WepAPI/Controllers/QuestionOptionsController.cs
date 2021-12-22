@@ -12,19 +12,19 @@ namespace WepAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AnswersController : ControllerBase
+    public class QuestionOptionsController : ControllerBase
     {
-        private readonly IAnswerService _answerService;
+        private readonly IQuestionOptionService _questionOptionService;
 
-        public AnswersController(IAnswerService answerService)
+        public QuestionOptionsController(IQuestionOptionService questionOptionService)
         {
-            _answerService = answerService;
+            _questionOptionService = questionOptionService;
         }
 
         [HttpGet("getAll")]
         public IActionResult GetAll()
         {
-            var result = _answerService.GetAll();
+            var result = _questionOptionService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -35,7 +35,7 @@ namespace WepAPI.Controllers
         [HttpGet("getById")]
         public IActionResult GetById(int answerId)
         {
-            var result = _answerService.GetById(answerId);
+            var result = _questionOptionService.GetById(answerId);
             if (result.Success)
             {
                 return Ok(result);
@@ -44,9 +44,9 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(AnswerDto answer)
+        public IActionResult Add(QuestionOptionDto answer)
         {
-            var result = _answerService.Add(answer);
+            var result = _questionOptionService.Add(answer);
             if (result.Success)
             {
                 return Ok(result);
@@ -55,9 +55,9 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(AnswerDto answer)
+        public IActionResult Update(QuestionOptionDto answer)
         {
-            var result = _answerService.Update(answer);
+            var result = _questionOptionService.Update(answer);
             if (result.Success)
             {
                 return Ok(result);
@@ -66,9 +66,9 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(AnswerDto answer)
+        public IActionResult Delete(QuestionOptionDto answer)
         {
-            var result = _answerService.Delete(answer);
+            var result = _questionOptionService.Delete(answer);
             if (result.Success)
             {
                 return Ok(result);

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfAnswerDal : EfEntityRepositoryBase<Answer, QuizContext>, IAnswerDal
+    public class EfQuestionOptionDal : EfEntityRepositoryBase<QuestionOption, QuizContext>, IQuestionOptionDal
     {
     }
 }

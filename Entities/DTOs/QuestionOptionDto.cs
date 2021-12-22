@@ -5,7 +5,7 @@ using Core.Entities;
 
 namespace Entities.DTOs
 {
-    public class AnswerDto : IDto
+    public class QuestionOptionDto : IDto
     {
     }
 }

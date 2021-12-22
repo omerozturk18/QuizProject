@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IAnswerService : IBaseService<AnswerDto>
+    public interface IQuestionOptionService : IBaseService<QuestionOptionDto>
     {
     }
 }

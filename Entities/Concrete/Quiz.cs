@@ -11,6 +11,7 @@ namespace Entities.Concrete
         public int Id { get; set; }
         public string QuizName { get; set; }
         public string QuizNumber { get; set; }
+        public bool IsStarted { get; set; }
         public DateTime OperationDate { get; set; }
         public Status Status { get; set; }
 

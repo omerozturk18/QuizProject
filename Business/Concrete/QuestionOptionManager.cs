@@ -6,29 +6,29 @@ using Entities.DTOs;
 
 namespace Business.Concrete
 {
-    public class AnswerManager : IAnswerService
+    public class QuestionOptionManager : IQuestionOptionService
     {
-        public IDataResult<List<AnswerDto>> GetAll()
+        public IDataResult<List<QuestionOptionDto>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public IDataResult<AnswerDto> GetById(int id)
+        public IDataResult<QuestionOptionDto> GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IResult Add(AnswerDto entity)
+        public IResult Add(QuestionOptionDto entity)
         {
             throw new NotImplementedException();
         }
 
-        public IResult Update(AnswerDto entity)
+        public IResult Update(QuestionOptionDto entity)
         {
             throw new NotImplementedException();
         }
 
-        public IResult Delete(AnswerDto entity)
+        public IResult Delete(QuestionOptionDto entity)
         {
             throw new NotImplementedException();
         }

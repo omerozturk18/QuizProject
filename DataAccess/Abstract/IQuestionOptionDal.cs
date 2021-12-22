@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IAnswerDal : IEntityRepository<Answer>
+    public interface IQuestionOptionDal : IEntityRepository<QuestionOption>
     {
     }
 }
