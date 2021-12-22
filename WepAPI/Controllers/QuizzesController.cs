@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Entities.DTOs;
 
 namespace WepAPI.Controllers
 {
@@ -43,7 +44,7 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Quiz quiz)
+        public IActionResult Add(QuizDto quiz)
         {
             var result = _quizService.Add(quiz);
             if (result.Success)
@@ -54,7 +55,7 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Quiz quiz)
+        public IActionResult Update(QuizDto quiz)
         {
             var result = _quizService.Update(quiz);
             if (result.Success)
@@ -65,7 +66,7 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Quiz quiz)
+        public IActionResult Delete(QuizDto quiz)
         {
             var result = _quizService.Delete(quiz);
             if (result.Success)
