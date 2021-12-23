@@ -6,7 +6,8 @@ namespace Entities.Enums
 {
     public enum Status
     {
-        PASSIVE=-1,
+        DELETED=-1,
+        PASSIVE,
         ACTIVE,
         STARTED,
         COMPLETED
