@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
@@ -9,29 +9,50 @@ namespace Business.Concrete
 {
     public class QuestionManager : IQuestionService
     {
-        public IResult Add(QuestionDto entity)
+        IQuestionDal _questionDal;
+
+        public QuestionManager(IQuestionDal questionDal)
         {
-            throw new NotImplementedException();
+            _questionDal = questionDal;
         }
 
-        public IResult Delete(QuestionDto entity)
+        public IResult Add(Question entity)
         {
-            throw new NotImplementedException();
+            _questionDal.Add(entity);
+            return new SuccessResult(Messages.Added);        }
+
+        [SecuredOperation("admin")]
+        public IResult Delete(Question entity)
+        {
+            _questionDal.Delete(entity);
+            return new SuccessResult(Messages.Deleted);
         }
 
-        public IDataResult<List<QuestionDto>> GetAll()
+        [SecuredOperation("admin")]
+        public IDataResult<List<Question>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Question>>(_questionDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<QuestionDto> GetById(int id)
+        public IDataResult<Question> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Question>(_questionDal.Get(c => c.Id == id), Messages.Listed);
         }
 
-        public IResult Update(QuestionDto entity)
+        public IResult Update(Question entity)
         {
-            throw new NotImplementedException();
+            _questionDal.Update(entity);
+            return new SuccessResult(Messages.Updated);
+        }
+
+        public IDataResult<List<Question>> GetByQuizId(int quizId)
+        {
+            return new SuccessDataResult<List<Question>>(_questionDal.GetAll(c => c.QuizId == quizId), Messages.Listed);
+        }
+
+        public IDataResult<QuestionDto> GetQuestionDetail(int id)
+        {
+            return new SuccessDataResult<QuestionDto>(_quizDal.GetQuestionDetail(id), Messages.Listed);
         }
     }
 }
