@@ -8,7 +8,7 @@ namespace DataAccess.Abstract
 {
     public interface IUserAnswerDal : IEntityRepository<UserAnswer>
     {
-       UserAnswerDto GetAnswerDetail(Expression<Func<UserAnswerDto, bool>> filter = null);
+       UserAnswerDto GetAnswerDetail(int id);
        List<UserAnswerDto> GetAnswersDetail(Expression<Func<UserAnswerDto, bool>> filter = null);
     }
 }
