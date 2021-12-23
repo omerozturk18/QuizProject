@@ -1,4 +1,4 @@
-﻿using Business.Abstract;
+using Business.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -44,7 +44,7 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(QuizDto quiz)
+        public IActionResult Add(Quiz quiz)
         {
             var result = _quizService.Add(quiz);
             if (result.Success)
@@ -55,7 +55,7 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(QuizDto quiz)
+        public IActionResult Update(Quiz quiz)
         {
             var result = _quizService.Update(quiz);
             if (result.Success)
@@ -66,7 +66,7 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(QuizDto quiz)
+        public IActionResult Delete(Quiz quiz)
         {
             var result = _quizService.Delete(quiz);
             if (result.Success)
