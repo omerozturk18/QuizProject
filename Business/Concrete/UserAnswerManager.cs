@@ -48,22 +48,22 @@ namespace Business.Concrete
 
         public IDataResult<UserAnswerDto> GetAnswerDetail( int id)
         {
-            return new SuccessDataResult<UserAnswerDto>(_userAnswerDal.GetAnswerDetail(id), Messages.Listed);
+            return new SuccessDataResult<UserAnswerDto>(_userAnswerDal.GetAnswerDetail(c => c.Id == id), Messages.Listed);
         }
 
         public IDataResult<List<UserAnswerDto>> GetUserAnswersDetail( int userId)
         {
-            return new SuccessDataResult<List<UserAnswerDto>>(_userAnswerDal.GetUserAnswersDetail(userId), Messages.Listed);
+            return new SuccessDataResult<List<UserAnswerDto>>(_userAnswerDal.GetAnswerDetail(c => c.User.Id == id), Messages.Listed);
         }
 
         public IDataResult<List<UserAnswerDto>> GetQuestionAnswersDetail( int questionId)
         {
-            return new SuccessDataResult<List<UserAnswerDto>>(_userAnswerDal.GetQuestionAnswersDetail(questionId), Messages.Listed);
+            return new SuccessDataResult<List<UserAnswerDto>>(_userAnswerDal.GetAnswerDetail(c => c.Question.Id == id), Messages.Listed);
         }
         
         public IDataResult<List<UserAnswerDto>> GetQuizAnswersDetail( int quizId )
         {
-            return new SuccessDataResult<List<UserAnswerDto>>(_userAnswerDal.GetQuizAnswersDetail(quizId), Messages.Listed);
+            return new SuccessDataResult<List<UserAnswerDto>>(_userAnswerDal.GetAnswerDetail(c => c.Quiz.Id == id), Messages.Listed);
         }
     }
 }
