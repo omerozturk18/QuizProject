@@ -53,17 +53,17 @@ namespace Business.Concrete
 
         public IDataResult<List<UserAnswerDto>> GetUserAnswersDetail( int userId)
         {
-            return new SuccessDataResult<List<UserAnswerDto>>(_userAnswerDal.GetAllAnswersDetail(c => c.User.Id == id), Messages.Listed);
+            return new SuccessDataResult<List<UserAnswerDto>>(_userAnswerDal.GetAllAnswersDetail(c => c.User.Id == userId), Messages.Listed);
         }
 
         public IDataResult<List<UserAnswerDto>> GetQuestionAnswersDetail( int questionId)
         {
-            return new SuccessDataResult<List<UserAnswerDto>>(_userAnswerDal.GetAllAnswersDetail(c => c.Question.Id == id), Messages.Listed);
+            return new SuccessDataResult<List<UserAnswerDto>>(_userAnswerDal.GetAllAnswersDetail(c => c.Question.Id == questionId), Messages.Listed);
         }
         
         public IDataResult<List<UserAnswerDto>> GetQuizAnswersDetail( int quizId )
         {
-            return new SuccessDataResult<List<UserAnswerDto>>(_userAnswerDal.GetAllAnswersDetail(c => c.Quiz.Id == id), Messages.Listed);
+            return new SuccessDataResult<List<UserAnswerDto>>(_userAnswerDal.GetAllAnswersDetail(c => c.Quiz.Id == quizId), Messages.Listed);
         }
     }
 }
