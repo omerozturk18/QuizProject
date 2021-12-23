@@ -21,7 +21,9 @@ namespace DataAccess.Concrete.EntityFramework
                              select new QuizDto
                              {
                              };
-                return result;
+                return filter==null
+                ?result.ToList()
+                :result.Where(filter).ToList();
               }
       }
     }
