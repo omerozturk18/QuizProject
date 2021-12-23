@@ -52,7 +52,7 @@ namespace Business.Concrete
 
         public IDataResult<QuestionDto> GetQuestionDetail(int id)
         {
-            return new SuccessDataResult<QuestionDto>(_quizDal.GetQuestionDetail(id), Messages.Listed);
+            return new SuccessDataResult<QuestionDto>(_quizDal.GetQuestionDetail(c => c.Id == id), Messages.Listed);
         }
     }
 }
