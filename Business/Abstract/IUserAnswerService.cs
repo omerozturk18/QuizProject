@@ -6,7 +6,11 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IUserAnswerService : IBaseService<UserAnswerDto>
+    public interface IUserAnswerService : IBaseService<UserAnswer>
     {
+       IDataResult<UserAnswerDto> GetAnswerDetail( int id);
+       IDataResult<List<UserAnswerDto>> GetUserAnswersDetail( int userId);
+       IDataResult<List<UserAnswerDto>> GetQuestionAnswersDetail( int questionId);
+       IDataResult<List<UserAnswerDto>> GetQuizAnswersDetail( int quizId );
     }
 }
