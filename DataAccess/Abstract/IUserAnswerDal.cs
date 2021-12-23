@@ -8,5 +8,9 @@ namespace DataAccess.Abstract
 {
     public interface IUserAnswerDal : IEntityRepository<UserAnswer>
     {
+       UserAnswerDto GetAnswerDetail( int id);
+       List<UserAnswerDto> GetUserAnswersDetail( int userId);
+       List<UserAnswerDto> GetQuestionAnswersDetail( int questionId);
+       List<UserAnswerDto> GetQuizAnswersDetail( int quizId );
     }
 }
