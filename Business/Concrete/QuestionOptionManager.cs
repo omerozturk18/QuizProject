@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Business.Abstract;
 using Core.Utilities.Results;
@@ -8,29 +8,41 @@ namespace Business.Concrete
 {
     public class QuestionOptionManager : IQuestionOptionService
     {
-        public IDataResult<List<QuestionOptionDto>> GetAll()
+        IQuestionOptionDal _questionOptionDal;
+
+        public QuestionOptionManager(IQuestionOptionDal questionOptionDal)
         {
-            throw new NotImplementedException();
+            _questionOptionDal = questionOptionDal;
         }
 
-        public IDataResult<QuestionOptionDto> GetById(int id)
+        [SecuredOperation("admin")]
+        public IDataResult<List<QuestionOption>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<QuestionOption>>(_questionOptionDal.GetAll(), Messages.Listed);
         }
 
-        public IResult Add(QuestionOptionDto entity)
+        [SecuredOperation("admin")]
+        public IDataResult<QuestionOption> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<QuestionOption>(_questionOptionDal.Get(c => c.Id == id), Messages.Listed);
         }
 
-        public IResult Update(QuestionOptionDto entity)
+        public IResult Add(QuestionOption entity)
         {
-            throw new NotImplementedException();
+            _questionOptionDal.Add(entity);
+            return new SuccessResult(Messages.Added);
         }
 
-        public IResult Delete(QuestionOptionDto entity)
+        public IResult Update(QuestionOption entity)
         {
-            throw new NotImplementedException();
+            _questionOptionDal.Update(entity);
+            return new SuccessResult(Messages.Updated);
+        }
+
+        public IResult Delete(QuestionOption entity)
+        {
+            _questionOptionDal.Delete(entity);
+            return new SuccessResult(Messages.Deleted);
         }
     }
 }
