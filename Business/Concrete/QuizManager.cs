@@ -63,7 +63,7 @@ namespace Business.Concrete
 
         public IDataResult<QuizDto> GetQuizDetail(int id)
         {
-            return new SuccessDataResult<QuizDto>(_quizDal.GetQuizDetail(c => c.Id == id), Messages.Listed);
+            return new SuccessDataResult<QuizDto>(_quizDal.GetQuizDetail(id), Messages.Listed);
         }
         
         public IResult ActivatedQuiz(int id)
