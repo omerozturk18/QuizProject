@@ -44,7 +44,7 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(UserAnswerDto userAnswer)
+        public IActionResult Add(UserAnswer userAnswer)
         {
             var result = _userAnswerService.Add(userAnswer);
             if (result.Success)
@@ -55,7 +55,7 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(UserAnswerDto userAnswer)
+        public IActionResult Update(UserAnswer userAnswer)
         {
             var result = _userAnswerService.Update(userAnswer);
             if (result.Success)
@@ -66,7 +66,7 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(UserAnswerDto userAnswer)
+        public IActionResult Delete(UserAnswer userAnswer)
         {
             var result = _userAnswerService.Delete(userAnswer);
             if (result.Success)

@@ -2,14 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
+using Business.BusinessAspect.Autofac;
+using Business.Constants;
 using Core.Utilities.Results;
+using DataAccess.Abstract;
+using Entities.Concrete;
 using Entities.DTOs;
 
 namespace Business.Concrete
 {
     public class QuestionManager : IQuestionService
     {
-        IQuestionDal _questionDal;
+        private readonly IQuestionDal _questionDal;
 
         public QuestionManager(IQuestionDal questionDal)
         {
@@ -53,7 +57,7 @@ namespace Business.Concrete
 
         public IDataResult<QuestionDto> GetQuestionDetail(int id)
         {
-            return new SuccessDataResult<QuestionDto>(_quizDal.GetQuestionDetail(id), Messages.Listed);
+            return new SuccessDataResult<QuestionDto>(_questionDal.GetQuestionDetail(id), Messages.Listed);
         }
     }
 }

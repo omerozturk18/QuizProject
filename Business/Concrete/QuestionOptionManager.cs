@@ -1,14 +1,18 @@
 using System;
 using System.Collections.Generic;
 using Business.Abstract;
+using Business.BusinessAspect.Autofac;
+using Business.Constants;
 using Core.Utilities.Results;
+using DataAccess.Abstract;
+using Entities.Concrete;
 using Entities.DTOs;
 
 namespace Business.Concrete
 {
     public class QuestionOptionManager : IQuestionOptionService
     {
-        IQuestionOptionDal _questionOptionDal;
+        private readonly IQuestionOptionDal _questionOptionDal;
 
         public QuestionOptionManager(IQuestionOptionDal questionOptionDal)
         {

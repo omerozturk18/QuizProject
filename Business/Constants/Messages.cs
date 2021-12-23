@@ -25,6 +25,11 @@ namespace Business.Constants
         public static string SuccessfulLogin = "Başarılı Giriş";
         public static string UserAlreadyExists = "Kullanıcı Mevcut";
 
+        public static string NotQuiz = "Sınav Bulunamadı";
+        public static string ActivatedQuiz = "Sınav Aktif Edildi";
+        public static string StartedQuiz = "Sınav Başladı";
+        public static string CompletedQuiz = "Sınav Tamamlandı";
+
         public static string UserRegistered = "Kullanıcı Mevcut.";
         public static string AccessTokenCreated = "Token Oluşturuldu";
     }

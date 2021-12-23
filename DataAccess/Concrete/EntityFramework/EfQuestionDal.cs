@@ -3,8 +3,10 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -23,10 +25,10 @@ namespace DataAccess.Concrete.EntityFramework
                              };
 
 
-                return result;
+                return result.First()!=null ? result.First() : null;
             }
        }
-       public List<QuestionDto> GetQuestionsDetail(Expression<Func<QuestionDto, bool>> filter = null){
+       public List<QuestionDto> GetAllQuestionsDetail(Expression<Func<QuestionDto, bool>> filter = null){
           using (QuizContext context= new QuizContext())
             {
                 var result = from car in context.Questions

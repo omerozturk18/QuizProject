@@ -2,16 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
+using Business.BusinessAspect.Autofac;
+using Business.Constants;
 using Core.Utilities.Results;
 using Entities.DTOs;
 using DataAccess.Abstract;
+using Entities.Concrete;
+using Entities.Enums;
 
 namespace Business.Concrete
 {
 
     public class QuizManager : IQuizService
     {
-        IQuizDal _quizDal;
+        private readonly IQuizDal _quizDal;
 
         public QuizManager(IQuizDal quizDal)
         {
@@ -20,8 +24,8 @@ namespace Business.Concrete
 
         public IResult Add(Quiz entity)
         {
-            entity.QuizNumber =new Random(Guid.newGuid().GetHashCode()).Next(0, 10);
-            entity.OperationDate =Date.Now();
+            entity.QuizNumber =new Random(Guid.NewGuid().GetHashCode()).Next(0, 10).ToString();
+            entity.OperationDate =DateTime.Now;
             entity.Status=Status.PASSIVE;
             _quizDal.Add(entity);
             return new SuccessResult(Messages.Added);
@@ -30,7 +34,7 @@ namespace Business.Concrete
         [SecuredOperation("admin")]
         public IResult Delete(Quiz entity)
         {
-            entity.OperationDate =Date.Now();
+            entity.OperationDate = DateTime.Now;
             entity.Status=Status.DELETED;
             _quizDal.Update(entity);
             return new SuccessResult(Messages.Deleted);
@@ -72,7 +76,7 @@ namespace Business.Concrete
             if(quiz == null) return new ErrorResult(Messages.NotQuiz);
             quiz.Status=Status.ACTIVE;
             _quizDal.Update(quiz);
-            return new SuccessResult(Messages.Started);
+            return new SuccessResult(Messages.ActivatedQuiz);
         }
 
          public IResult StartedQuiz(int id)
@@ -81,7 +85,7 @@ namespace Business.Concrete
             if(quiz == null) return new ErrorResult(Messages.NotQuiz);
             quiz.Status=Status.STARTED;
             _quizDal.Update(quiz);
-            return new SuccessResult(Messages.Started);
+            return new SuccessResult(Messages.StartedQuiz);
         }
 
          public IResult CompletedQuiz(int id)
@@ -90,7 +94,7 @@ namespace Business.Concrete
             if(quiz == null) return new ErrorResult(Messages.NotQuiz);
             quiz.Status=Status.COMPLETED;
             _quizDal.Update(quiz);
-            return new SuccessResult(Messages.Started);
+            return new SuccessResult(Messages.CompletedQuiz);
         }
     }
 }
