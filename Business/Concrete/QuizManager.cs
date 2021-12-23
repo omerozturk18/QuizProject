@@ -1,37 +1,49 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
 using Core.Utilities.Results;
 using Entities.DTOs;
+using DataAccess.Abstract;
 
 namespace Business.Concrete
 {
+
     public class QuizManager : IQuizService
     {
-        public IResult Add(QuizDto entity)
+        IQuizDal _quizDal;
+
+        public QuizManager(IQuizDal quizDal)
         {
-            throw new NotImplementedException();
+            _quizDal = quizDal;
         }
 
-        public IResult Delete(QuizDto entity)
+        public IResult Add(Quiz entity)
         {
-            throw new NotImplementedException();
+            _quizDal.Add(entity);
+            return new SuccessResult(Messages.Added);
         }
 
-        public IDataResult<List<QuizDto>> GetAll()
+        public IResult Delete(Quiz entity)
         {
-            throw new NotImplementedException();
+            _quizDal.Delete(entity);
+            return new SuccessResult(Messages.Added);
         }
 
-        public IDataResult<QuizDto> GetById(int id)
+        public IDataResult<List<Quiz>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Quiz>>(_quizDal.GetAll(), Messages.Listed);
         }
 
-        public IResult Update(QuizDto entity)
+        public IDataResult<Quiz> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Quiz>(_quizDal.Get(c => c.Id == id), Messages.Listed);
+        }
+
+        public IResult Update(Quiz entity)
+        {
+            _quizDal.Update(entity);
+            return new SuccessResult(Messages.Added);
         }
     }
 }
