@@ -8,9 +8,9 @@ namespace DataAccess.Abstract
 {
     public interface IUserAnswerDal : IEntityRepository<UserAnswer>
     {
-       UserAnswerDto GetAnswerDetail(Expression<Func<CarDetailDto, bool>> filter = null);
-       List<UserAnswerDto> GetUserAnswersDetail(Expression<Func<CarDetailDto, bool>> filter = null);
-       List<UserAnswerDto> GetQuestionAnswersDetail(Expression<Func<CarDetailDto, bool>> filter = null);
-       List<UserAnswerDto> GetQuizAnswersDetail(Expression<Func<CarDetailDto, bool>> filter = null);
+       UserAnswerDto GetAnswerDetail(Expression<Func<UserAnswerDto, bool>> filter = null);
+       List<UserAnswerDto> GetUserAnswersDetail(Expression<Func<UserAnswerDto, bool>> filter = null);
+       List<UserAnswerDto> GetQuestionAnswersDetail(Expression<Func<UserAnswerDto, bool>> filter = null);
+       List<UserAnswerDto> GetQuizAnswersDetail(Expression<Func<UserAnswerDto, bool>> filter = null);
     }
 }
