@@ -8,6 +8,7 @@ namespace DataAccess.Abstract
 {
     public interface IQuestionDal : IEntityRepository<Question>
     {
-       QuestionDto GetQuestionDetail(Expression<Func<QuestionDto, bool>> filter = null);
+       QuestionDto GetQuestionDetail(int id);
+       List<QuestionDto> GetAllQuestionsDetail(Expression<Func<QuestionDto, bool>> filter = null);
     }
 }
