@@ -10,7 +10,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfQuizDal : EfEntityRepositoryBase<Quiz, QuizContext>, IQuizDal
     {
-      public QuizDto GetQuizDetail(int id){
+      public QuizDto GetQuizDetail(Expression<Func<QuizDto, bool>> filter = null){
           using (QuizContext context= new QuizContext())
             {
                 var result = from car in context.Quizes
