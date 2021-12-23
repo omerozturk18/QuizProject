@@ -44,7 +44,7 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(QuestionOptionDto answer)
+        public IActionResult Add(QuestionOption answer)
         {
             var result = _questionOptionService.Add(answer);
             if (result.Success)
@@ -55,7 +55,7 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(QuestionOptionDto answer)
+        public IActionResult Update(QuestionOption answer)
         {
             var result = _questionOptionService.Update(answer);
             if (result.Success)
@@ -66,7 +66,7 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(QuestionOptionDto answer)
+        public IActionResult Delete(QuestionOption answer)
         {
             var result = _questionOptionService.Delete(answer);
             if (result.Success)
