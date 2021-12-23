@@ -8,6 +8,7 @@ namespace Entities.Enums
     {
         PASSIVE=-1,
         ACTIVE,
+        STARTED,
         COMPLETED
     }
 }
