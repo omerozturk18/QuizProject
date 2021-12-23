@@ -26,7 +26,7 @@ namespace DataAccess.Concrete.EntityFramework
                 return result;
             }
        }
-       public List<UserAnswerDto> GetAllnswersDetail(Expression<Func<UserAnswerDto, bool>> filter = null){
+       public List<UserAnswerDto> GetAllAnswersDetail(Expression<Func<UserAnswerDto, bool>> filter = null){
           using (QuizContext context= new QuizContext())
             {
                 var result = from car in context.UserAnswers
