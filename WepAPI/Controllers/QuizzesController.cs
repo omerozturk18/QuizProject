@@ -75,5 +75,59 @@ namespace WepAPI.Controllers
             }
             return BadRequest(result);
         }
+        
+        [HttpGet("isThereQuiz")]
+        public IActionResult Delete(string quizNumber)
+        {
+            var result = _quizService.IsThereQuiz(quizNumber);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        
+        [HttpGet("getQuizDetail")]
+        public IActionResult GetQuizDetail(int id)
+        {
+            var result = _quizService.GetQuizDetail(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        
+        [HttpPost("activatedQuiz")]
+        public IActionResult ActivatedQuiz(int id)
+        {
+            var result = _quizService.ActivatedQuiz(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        
+        [HttpPost("startedQuiz")]
+        public IActionResult StartedQuiz(int id)
+        {
+            var result = _quizService.StartedQuiz(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("completedQuiz")]
+        public IActionResult CompletedQuiz(int id)
+        {
+            var result = _quizService.CompletedQuiz(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }
