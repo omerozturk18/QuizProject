@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IQuizService:IBaseService<QuizDto>
+    public interface IQuizService:IBaseService<Quiz>
     {
     }
 }
