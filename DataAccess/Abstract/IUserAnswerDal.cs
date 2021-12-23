@@ -9,6 +9,6 @@ namespace DataAccess.Abstract
     public interface IUserAnswerDal : IEntityRepository<UserAnswer>
     {
        UserAnswerDto GetAnswerDetail(int id);
-       List<UserAnswerDto> GetAnswersDetail(Expression<Func<UserAnswerDto, bool>> filter = null);
+       List<UserAnswerDto> GetAllnswersDetail(Expression<Func<UserAnswerDto, bool>> filter = null);
     }
 }
