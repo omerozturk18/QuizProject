@@ -8,5 +8,6 @@ namespace Business.Abstract
 {
     public interface IQuizService:IBaseService<Quiz>
     {
+       IDataResult<Quiz> IsThereQuiz(string quizNumber)
     }
 }
