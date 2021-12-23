@@ -8,5 +8,6 @@ namespace DataAccess.Abstract
 {
     public interface IQuizDal:IEntityRepository<Quiz>
     {
+     QuizDto GetQuizDetail(int id);
     }
 }
