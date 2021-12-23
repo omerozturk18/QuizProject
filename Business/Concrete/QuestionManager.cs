@@ -19,7 +19,8 @@ namespace Business.Concrete
         public IResult Add(Question entity)
         {
             _questionDal.Add(entity);
-            return new SuccessResult(Messages.Added);        }
+            return new SuccessResult(Messages.Added);   
+        }
 
         [SecuredOperation("admin")]
         public IResult Delete(Question entity)
@@ -52,7 +53,7 @@ namespace Business.Concrete
 
         public IDataResult<QuestionDto> GetQuestionDetail(int id)
         {
-            return new SuccessDataResult<QuestionDto>(_quizDal.GetQuestionDetail(c => c.Id == id), Messages.Listed);
+            return new SuccessDataResult<QuestionDto>(_quizDal.GetQuestionDetail(id), Messages.Listed);
         }
     }
 }
