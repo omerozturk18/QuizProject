@@ -9,5 +9,6 @@ namespace Business.Abstract
     public interface IQuestionService : IBaseService<Question>
     {
        IDataResult<List<Question>> GetByQuizId(int quizId);
+       IDataResult<QuestionDto> GetQuestionDetail(int id);
     }
 }
