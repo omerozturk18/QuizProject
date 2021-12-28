@@ -8,6 +8,7 @@ namespace Core.DataAccess
 {
     public interface IEntityRepository<T> where T:class,IEntity,new()
     {
+        T AddEntity(T entity);
         void Add(T entity);
 
         void Update(T entity);

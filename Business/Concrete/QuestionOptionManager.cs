@@ -33,12 +33,14 @@ namespace Business.Concrete
 
         public IResult Add(QuestionOption entity)
         {
+            entity.OperationDate = DateTime.Now;
             _questionOptionDal.Add(entity);
             return new SuccessResult(Messages.Added);
         }
 
         public IResult Update(QuestionOption entity)
         {
+            entity.OperationDate = DateTime.Now;
             _questionOptionDal.Update(entity);
             return new SuccessResult(Messages.Updated);
         }
@@ -47,6 +49,31 @@ namespace Business.Concrete
         {
             _questionOptionDal.Delete(entity);
             return new SuccessResult(Messages.Deleted);
+        }
+        
+        public IDataResult<List<QuestionOption>> MultiAdd(List<QuestionOption> questionOptions)
+        {
+            foreach (var questionOption in questionOptions)
+            {
+                questionOption.OperationDate = DateTime.Now;
+                _questionOptionDal.Add(questionOption);
+            }
+            return new SuccessDataResult<List<QuestionOption>>(_questionOptionDal.GetAll(x=>x.QuestionId==questionOptions[0].QuestionId), Messages.Added);
+        }
+
+        public IDataResult<List<QuestionOption>> MultiUpdate(List<QuestionOption> questionOptions)
+        {
+            foreach (var questionOption in questionOptions)
+            {
+                questionOption.OperationDate = DateTime.Now;
+                _questionOptionDal.Update(questionOption);
+            }
+            return new SuccessDataResult<List<QuestionOption>>(_questionOptionDal.GetAll(x => x.QuestionId == questionOptions[0].QuestionId), Messages.Added);
+        }
+
+        public IDataResult<List<QuestionOption>> GetQuestionOptionsByQuestionId(int questionId)
+        {
+            return new SuccessDataResult<List<QuestionOption>>(_questionOptionDal.GetAll(x => x.QuestionId == questionId), Messages.Added);
         }
     }
 }

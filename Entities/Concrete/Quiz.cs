@@ -9,6 +9,7 @@ namespace Entities.Concrete
     public class Quiz:IEntity
     {
         public int Id { get; set; }
+        public int UserId { get; set; }
         public string QuizName { get; set; }
         public string QuizNumber { get; set; }
         public DateTime OperationDate { get; set; }

@@ -42,11 +42,42 @@ namespace WepAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getQuestionsDetailByQuizId")]
+        public IActionResult GetQuestionsDetailByQuizId(int quizId)
+        {
+            var result = _questionService.GetQuestionsDetailByQuizId(quizId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getQuestionsByQuizId")]
+        public IActionResult GetQuestionsByQuizId(int quizId)
+        {
+            var result = _questionService.GetByQuizId(quizId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
         [HttpPost("add")]
         public IActionResult Add(Question question)
         {
             var result = _questionService.Add(question);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("addQuestion")]
+        public IActionResult AddQuestion(Question question)
+        {
+            var result = _questionService.AddQuestion(question);
             if (result.Success)
             {
                 return Ok(result);

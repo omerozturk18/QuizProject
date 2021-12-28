@@ -77,7 +77,7 @@ namespace WepAPI.Controllers
         }
         
         [HttpGet("isThereQuiz")]
-        public IActionResult Delete(string quizNumber)
+        public IActionResult IsThereQuiz(string quizNumber)
         {
             var result = _quizService.IsThereQuiz(quizNumber);
             if (result.Success)
@@ -91,6 +91,27 @@ namespace WepAPI.Controllers
         public IActionResult GetQuizDetail(int id)
         {
             var result = _quizService.GetQuizDetail(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getByUserQuizzes")]
+        public IActionResult GetByUserQuizzes(int userId)
+        {
+            var result = _quizService.GetByUserQuizzes(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+         [HttpGet("getQuizzesDetailByUserId")]
+        public IActionResult GetQuizzesDetailByUserId(int userId)
+        {
+            var result = _quizService.GetQuizzesDetailByUserId(userId);
             if (result.Success)
             {
                 return Ok(result);

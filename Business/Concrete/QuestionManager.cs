@@ -22,6 +22,7 @@ namespace Business.Concrete
 
         public IResult Add(Question entity)
         {
+            entity.OperationDate=DateTime.Now;
             _questionDal.Add(entity);
             return new SuccessResult(Messages.Added);   
         }
@@ -46,13 +47,25 @@ namespace Business.Concrete
 
         public IResult Update(Question entity)
         {
+            entity.OperationDate = DateTime.Now;
             _questionDal.Update(entity);
             return new SuccessResult(Messages.Updated);
+        }
+
+        public IDataResult<Question> AddQuestion(Question question)
+        {
+            question.OperationDate = DateTime.Now;
+            return new SuccessDataResult<Question>(_questionDal.AddEntity(question));
         }
 
         public IDataResult<List<Question>> GetByQuizId(int quizId)
         {
             return new SuccessDataResult<List<Question>>(_questionDal.GetAll(c => c.QuizId == quizId), Messages.Listed);
+        }
+
+        public IDataResult<List<QuestionDto>> GetQuestionsDetailByQuizId(int quizId)
+        {
+            return new SuccessDataResult<List<QuestionDto>>(_questionDal.GetAllQuestionsDetail(x=>x.QuizId==quizId), Messages.Listed);
         }
 
         public IDataResult<QuestionDto> GetQuestionDetail(int id)

@@ -9,5 +9,9 @@ namespace Business.Abstract
 {
     public interface IQuestionOptionService : IBaseService<QuestionOption>
     {
+        IDataResult<List<QuestionOption>> MultiAdd(List<QuestionOption> questionOptions);
+        IDataResult<List<QuestionOption>> MultiUpdate(List<QuestionOption> questionOptions);
+        IDataResult<List<QuestionOption>> GetQuestionOptionsByQuestionId(int questionId);
+
     }
 }

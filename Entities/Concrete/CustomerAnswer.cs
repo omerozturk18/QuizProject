@@ -5,10 +5,10 @@ using Core.Entities;
 
 namespace Entities.Concrete
 {
-    public class UserAnswer:IEntity
+    public class CustomerAnswer:IEntity
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public int CustomerId { get; set; }
         public int QuizId { get; set; }
         public int QuestionId { get; set; }
         public int AnswerId { get; set; }

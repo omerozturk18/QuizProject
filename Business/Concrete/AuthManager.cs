@@ -1,4 +1,7 @@
-﻿using Business.Abstract;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Business.Abstract;
+using Business.BusinessAspect.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -42,18 +45,17 @@ namespace Business.Concrete
         [ValidationAspect(typeof(UserForLoginDtoValidator))]
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
-            var  userToCheck = _userService.GetByMail(userForLoginDto.Email);
-            if (userToCheck == null)
-            {
-                return new ErrorDataResult<User>(Messages.UserNotFound);
-            }
 
-            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.Data.PasswordHash, userToCheck.Data.PasswordSalt))
-            {
-                return new ErrorDataResult<User>(Messages.PasswordError);
-            }
+            var userToCheckResult = _userService.GetByMail(userForLoginDto.Email);
+            if (!userToCheckResult.Success) return new ErrorDataResult<User>(userToCheckResult.Message);
 
-            return new SuccessDataResult<User>(userToCheck.Data, Messages.SuccessfulLogin);
+            var userToCheck = userToCheckResult.Data;
+            if (userToCheck == null) return new ErrorDataResult<User>(Messages.UserNotFound);
+
+            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash,
+                userToCheck.PasswordSalt)) return new ErrorDataResult<User>(Messages.PasswordError);
+
+            return new SuccessDataResult<User>(userToCheck, Messages.SuccessfulLogin);
         }
 
         public IResult UserExists(string email)
@@ -70,6 +72,20 @@ namespace Business.Concrete
             var claims = _userService.GetClaims(user);
             var accessToken = _tokenHelper.CreateToken(user, claims.Data);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
+        }
+        [SecuredOperation("user")]
+        public IResult IsAuthenticated(string userMail, List<string> requiredRoles)
+        {
+            if (requiredRoles != null)
+            {
+                var user = _userService.GetByMail(userMail).Data;
+                var userClaims = _userService.GetClaims(user).Data;
+                var doesUserHaveRequiredRoles =
+                    requiredRoles.All(role => userClaims.Select(userClaim => userClaim.Name).Contains(role));
+                if (!doesUserHaveRequiredRoles) return new ErrorResult(Messages.AuthorizationDenied);
+            }
+
+            return new SuccessResult();
         }
     }
 }

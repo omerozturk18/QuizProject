@@ -24,18 +24,14 @@ namespace WepAPI.Controllers
         public ActionResult Login(UserForLoginDto userForLoginDto)
         {
             var userToLogin = _authService.Login(userForLoginDto);
-            if (!userToLogin.Success)
-            {
-                return BadRequest(userToLogin.Message);
-            }
+            if (!userToLogin.Success) return BadRequest(userToLogin.Message);
 
             var result = _authService.CreateAccessToken(userToLogin.Data);
-            if (result.Success)
-            {
-                return Ok(result.Data);
-            }
+            if (!result.Success) return BadRequest(result.Message);
 
-            return BadRequest(result.Message);
+            result.Message = userToLogin.Message;
+            return Ok(result);
+
         }
 
         [HttpPost("register")]
@@ -55,6 +51,18 @@ namespace WepAPI.Controllers
             }
 
             return BadRequest(result.Message);
+        }
+        [HttpGet("isauthenticated")]
+        public ActionResult IsAuthenticated(string userMail, string requiredRoles)
+        {
+            var requiredRolesList = !string.IsNullOrEmpty(requiredRoles)
+                ? requiredRoles.Split(',').ToList()
+                : null;
+
+            var result = _authService.IsAuthenticated(userMail, requiredRolesList);
+            if (result.Success) return Ok(result);
+
+            return Unauthorized(result.Message);
         }
 
     }

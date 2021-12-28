@@ -14,7 +14,7 @@
     <Compile Include="Abstract\IBrandDal.cs" />
     <Compile Include="Abstract\IQuestionOptionDal.cs" />
     <Compile Include="Abstract\IQuizDal.cs" />
-    <Compile Include="Abstract\IUserAnswerDal.cs" />
+    <Compile Include="Abstract\ICustomerAnswerDal.cs" />
     <Compile Include="Abstract\IQuestionDal.cs" />
     <Compile Include="Abstract\ICarDal.cs" />
     <Compile Include="Abstract\ICarImageDal.cs" />
@@ -30,6 +30,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Core">
+      <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\3.1.10\ref\netcoreapp3.1\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

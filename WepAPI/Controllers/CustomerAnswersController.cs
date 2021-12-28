@@ -12,19 +12,19 @@ namespace WepAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserAnswersController : ControllerBase
+    public class CustomerAnswersController : ControllerBase
     {
-        private readonly IUserAnswerService _userAnswerService;
+        private readonly ICustomerAnswerService _customerAnswerService;
 
-        public UserAnswersController(IUserAnswerService userAnswerService)
+        public CustomerAnswersController(ICustomerAnswerService customerAnswerService)
         {
-            _userAnswerService = userAnswerService;
+            _customerAnswerService = customerAnswerService;
         }
 
         [HttpGet("getAll")]
         public IActionResult GetAll()
         {
-            var result = _userAnswerService.GetAll();
+            var result = _customerAnswerService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -33,9 +33,9 @@ namespace WepAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(int userAnswerId)
+        public IActionResult GetById(int customerAnswerId)
         {
-            var result = _userAnswerService.GetById(userAnswerId);
+            var result = _customerAnswerService.GetById(customerAnswerId);
             if (result.Success)
             {
                 return Ok(result);
@@ -44,9 +44,9 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(UserAnswer userAnswer)
+        public IActionResult Add(CustomerAnswer customerAnswer)
         {
-            var result = _userAnswerService.Add(userAnswer);
+            var result = _customerAnswerService.Add(customerAnswer);
             if (result.Success)
             {
                 return Ok(result);
@@ -55,9 +55,9 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(UserAnswer userAnswer)
+        public IActionResult Update(CustomerAnswer customerAnswer)
         {
-            var result = _userAnswerService.Update(userAnswer);
+            var result = _customerAnswerService.Update(customerAnswer);
             if (result.Success)
             {
                 return Ok(result);
@@ -66,9 +66,9 @@ namespace WepAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(UserAnswer userAnswer)
+        public IActionResult Delete(CustomerAnswer customerAnswer)
         {
-            var result = _userAnswerService.Delete(userAnswer);
+            var result = _customerAnswerService.Delete(customerAnswer);
             if (result.Success)
             {
                 return Ok(result);

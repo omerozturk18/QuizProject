@@ -53,5 +53,18 @@ namespace WepAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getClaims")]
+        public IActionResult GetClaims(int userId)
+        {
+            var userResult = _userService.GetById(userId);
+            if (!userResult.Success) return BadRequest(userResult);
+            var result = _userService.GetClaims(userResult.Data);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
     }
 }

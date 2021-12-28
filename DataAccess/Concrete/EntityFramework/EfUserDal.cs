@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfUserDal : EfEntityRepositoryBase<User, ReCapContext>, IUserDal
+    public class EfUserDal : EfEntityRepositoryBase<User, QuizContext>, IUserDal
     {
         public List<OperationClaim> GetClaims(User user)
         {
-            using (var context = new ReCapContext())
+            using (var context = new QuizContext())
             {
                 var result = from operationClaim in context.OperationClaims
                              join userOperationClaim in context.UserOperationClaims

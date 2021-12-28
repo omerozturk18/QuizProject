@@ -31,17 +31,23 @@ namespace DataAccess.Concrete.EntityFramework
        public List<QuestionDto> GetAllQuestionsDetail(Expression<Func<QuestionDto, bool>> filter = null){
           using (QuizContext context= new QuizContext())
             {
-                var result = from car in context.Questions
-                            /* join b in context.Brands on car.BrandId equals b.BrandId
-                             join c in context.Colors on car.ColorId equals c.ColorId
-                             join cI in context.CarImages on car.CarId equals cI.CarId into gr
-                             from cI in gr.DefaultIfEmpty()*/
-                             select new QuestionDto
-                             {
-                             };
+                var result = from question in context.Questions
+                    select new QuestionDto
+                    {
+                        Id = question.Id,
+                        QuizId = question.QuizId,
+                        IsTimeOver = question.IsTimeOver,
+                        OperationDate = question.OperationDate,
+                        QuestionContent = question.QuestionContent,
+                        QuestionDuration = question.QuestionDuration,
+                        QuestionImage = question.QuestionImage,
+                        QuestionOptions = context.QuestionOptions.Where(i => i.QuestionId == question.Id).ToList(),
+                        QuestionScore = question.QuestionScore,
+                        QuestionType = question.QuestionType
+                    };
 
 
-                return filter==null
+                return filter ==null
                 ?result.ToList()
                 :result.Where(filter).ToList();
             }

@@ -10,14 +10,14 @@ namespace Business.ValidationRules.FluentValidation
     {
         public UserForLoginDtoValidator()
         {
-            RuleFor(p => p.Email).NotEmpty();
+          /*  RuleFor(p => p.Email).NotEmpty();
             RuleFor(p => p.Email).EmailAddress();
             RuleFor(p => p.Email.Length).GreaterThan(2);
             RuleFor(p => p.Email).MaximumLength(50);
 
             RuleFor(p => p.Password).NotEmpty();
             RuleFor(p => p.Password.Length).GreaterThan(6);
-            RuleFor(p => p.Password).MaximumLength(50);
+            RuleFor(p => p.Password).MaximumLength(50);*/
         }
     }
 }

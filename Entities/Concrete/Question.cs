@@ -7,12 +7,12 @@ namespace Entities.Concrete
     public class Question : IEntity
     {
         public int Id { get; set; }
+        public int QuizId { get; set; }
         public string QuestionContent { get; set; }
         public string QuestionImage { get; set; }
-        public TimeSpan QuestionDuration { get; set; }
+        public int QuestionDuration { get; set; }
         public int QuestionScore { get; set; }
         public bool IsTimeOver { get; set; }
-        public int QuizId { get; set; }
         public DateTime OperationDate { get; set; }
         public QuestionType QuestionType { get; set; }
     }

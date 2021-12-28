@@ -7,7 +7,7 @@ using Entities.Concrete;
 
 namespace Entities.DTOs
 {
-    public class UserAnswerDto : IDto
+    public class CustomerAnswerDto : IDto
     {
         public int Id { get; set; }
         public User User { get; set; }
