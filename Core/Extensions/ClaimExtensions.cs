@@ -27,6 +27,10 @@ namespace Core.Extensions
         {
             claims.Add(new Claim("UserId", id));
         }
+        public static void AddRole(this ICollection<Claim> claims, string role)
+        {
+            claims.Add(new Claim("Role", role));
+        }
 
         public static void AddRoles(this ICollection<Claim> claims, string[] roles)
         {
