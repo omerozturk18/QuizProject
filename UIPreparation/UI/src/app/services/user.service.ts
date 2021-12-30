@@ -13,22 +13,22 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   addUser(user: User): Observable<SingleResponseModel<User>> {
-    return this.httpClient.post<SingleResponseModel<User>>(environment.userServicePath + "/add", user);
+    return this.httpClient.post<SingleResponseModel<User>>(environment.userPath + "/add", user);
   }
   updateUser(user: User): Observable<SingleResponseModel<User>> {
-    return this.httpClient.post<SingleResponseModel<User>>(environment.userServicePath + "/update", user);
+    return this.httpClient.post<SingleResponseModel<User>>(environment.userPath + "/update", user);
   }
   deleteUser(user: User): Observable<SingleResponseModel<User>> {
-    return this.httpClient.post<SingleResponseModel<User>>(environment.userServicePath + "/delete", user);
+    return this.httpClient.post<SingleResponseModel<User>>(environment.userPath + "/delete", user);
   }
   getAllUsers(): Observable<SingleResponseModel<User>> {
-    return this.httpClient.get<SingleResponseModel<User>>(environment.userServicePath + "/getAll");
+    return this.httpClient.get<SingleResponseModel<User>>(environment.userPath + "/getAll");
   }
   getUser(userId: number): Observable<SingleResponseModel<User>> {
-    return this.httpClient.get<SingleResponseModel<User>>(environment.userServicePath + "/getById?userId=" + userId);
+    return this.httpClient.get<SingleResponseModel<User>>(environment.userPath + "/getById?userId=" + userId);
   }
   getClaims(userId: number): Observable<SingleResponseModel<User>> {
-    return this.httpClient.get<SingleResponseModel<User>>(environment.userServicePath + "/getClaims?userId=" + userId);
+    return this.httpClient.get<SingleResponseModel<User>>(environment.userPath + "/getClaims?userId=" + userId);
   }
 
 }

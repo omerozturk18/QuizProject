@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { QuestionModelView } from 'src/app/models/QuestionModelView';
 import { QuizModelView } from 'src/app/models/QuizModelView';
 import { Status } from 'src/app/models/Status';
+import { AuthService } from 'src/app/services/auth.service';
 import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
@@ -55,6 +56,7 @@ export class QuizWizardComponent implements OnInit {
     private toastrService: ToastrService,
     private activatedRoute: ActivatedRoute,
     private ngWizardService: NgWizardService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -91,7 +93,8 @@ export class QuizWizardComponent implements OnInit {
     this.ngWizardService.reset();
   }
   saveQuizService(){
-    this.quiz.userId=5;
+    let user=this.authService.getCurrentUser();
+    this.quiz.userId=user.UserId;
     this.quiz.status=Status.PASSIVE;
     this.quizService.addQuiz(this.quiz).subscribe(response=>{
       this.toastrService.success(response.message);
@@ -99,7 +102,8 @@ export class QuizWizardComponent implements OnInit {
     });
   }
   updateQuizService(){
-    this.quiz.userId=5;
+    let user=this.authService.getCurrentUser();
+    this.quiz.userId=user.UserId;
     this.quiz.status=Status.PASSIVE;
     this.quizService.updateQuiz(this.quiz).subscribe(response=>{
       this.toastrService.success(response.message);

@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
@@ -18,6 +19,7 @@ export class QuizUpdateComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -30,6 +32,9 @@ export class QuizUpdateComponent implements OnInit {
   }
   save() {
     if (this.quizForm.valid) {
+      let user=this.authService.getCurrentUser();
+        this.quiz.userId=user.UserId;
+        alert(user.UserId)
       this.saveQuiz.emit(this.quiz);
     }else{
       this.toastrService.error("Sınav İsmi Zorunludur.")
