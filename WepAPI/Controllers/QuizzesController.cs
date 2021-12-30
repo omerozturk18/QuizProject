@@ -6,7 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Entities;
 using Entities.DTOs;
+using Entities.Enums;
+using Microsoft.AspNetCore.SignalR;
 
 namespace WepAPI.Controllers
 {
@@ -15,10 +18,12 @@ namespace WepAPI.Controllers
     public class QuizzesController : ControllerBase
     {
         private readonly IQuizService _quizService;
+        private readonly IHubContext<BroadcastHub> _hubContext;
 
-        public QuizzesController(IQuizService quizService)
+        public QuizzesController(IQuizService quizService, IHubContext<BroadcastHub> hubContext)
         {
             _quizService = quizService;
+            _hubContext = hubContext;
         }
 
         [HttpGet("getAll")]
@@ -32,8 +37,9 @@ namespace WepAPI.Controllers
             return BadRequest(result);
         }
 
+
         [HttpGet("getById")]
-        public IActionResult GetById(int quizId)
+        public IActionResult GetById(string quizId)
         {
             var result = _quizService.GetById(quizId);
             if (result.Success)
@@ -42,9 +48,8 @@ namespace WepAPI.Controllers
             }
             return BadRequest(result);
         }
-
         [HttpPost("add")]
-        public IActionResult Add(Quiz quiz)
+        public async Task<ActionResult> Add([FromBody] Quiz quiz)
         {
             var result = _quizService.Add(quiz);
             if (result.Success)
@@ -87,19 +92,10 @@ namespace WepAPI.Controllers
             return BadRequest(result);
         }
         
-        [HttpGet("getQuizDetail")]
-        public IActionResult GetQuizDetail(int id)
-        {
-            var result = _quizService.GetQuizDetail(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
         [HttpGet("getByUserQuizzes")]
         public IActionResult GetByUserQuizzes(int userId)
         {
+
             var result = _quizService.GetByUserQuizzes(userId);
             if (result.Success)
             {
@@ -107,48 +103,62 @@ namespace WepAPI.Controllers
             }
             return BadRequest(result);
         }
-
-         [HttpGet("getQuizzesDetailByUserId")]
-        public IActionResult GetQuizzesDetailByUserId(int userId)
+        [HttpGet("getQuizByQuizNumber")]
+        public IActionResult GetQuizByQuizNumber(string quizNumber, Status status)
         {
-            var result = _quizService.GetQuizzesDetailByUserId(userId);
+
+            var result = _quizService.GetQuizByQuizNumber(quizNumber, status);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
+
+
         
         [HttpPost("activatedQuiz")]
-        public IActionResult ActivatedQuiz(int id)
+        public IActionResult ActivatedQuiz(Quiz quiz)
         {
-            var result = _quizService.ActivatedQuiz(id);
+            var result = _quizService.ActivatedQuiz(quiz.Id);
             if (result.Success)
             {
+                _hubContext.Clients.All.SendAsync("ActivatedQuiz", quiz);
                 return Ok(result);
             }
             return BadRequest(result);
         }
         
         [HttpPost("startedQuiz")]
-        public IActionResult StartedQuiz(int id)
+        public IActionResult StartedQuiz(Quiz quiz)
         {
-            var result = _quizService.StartedQuiz(id);
+
+            var result = _quizService.StartedQuiz(quiz.Id);
             if (result.Success)
             {
+                _hubContext.Clients.All.SendAsync("StartedQuiz"+quiz.QuizNumber, quiz);
                 return Ok(result);
             }
             return BadRequest(result);
         }
         [HttpPost("completedQuiz")]
-        public IActionResult CompletedQuiz(int id)
+
+        public IActionResult CompletedQuiz(Quiz quiz)
         {
-            var result = _quizService.CompletedQuiz(id);
+            var result = _quizService.CompletedQuiz(quiz.Id);
             if (result.Success)
             {
+                _hubContext.Clients.All.SendAsync("CompletedQuiz" + quiz.QuizNumber);
                 return Ok(result);
             }
             return BadRequest(result);
+        }
+        [HttpPost("nextQuestion")]
+        public IActionResult NextQuestion(int questionLocalation, Quiz quiz)
+        {
+            
+            _hubContext.Clients.All.SendAsync("ChangeQuestion" + quiz.QuizNumber);
+            return Ok(questionLocalation+1);
         }
     }
 }

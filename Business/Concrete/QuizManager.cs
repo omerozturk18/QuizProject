@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Business.Abstract;
 using Business.BusinessAspect.Autofac;
@@ -15,11 +16,11 @@ namespace Business.Concrete
 
     public class QuizManager : IQuizService
     {
-        private readonly IQuizDal _quizDal;
+        private readonly IMongoQuizDal _mongoQuizDal;
 
-        public QuizManager(IQuizDal quizDal)
+        public QuizManager( IMongoQuizDal mongoQuizDal)
         {
-            _quizDal = quizDal;
+            _mongoQuizDal = mongoQuizDal;
         }
 
         public IResult Add(Quiz entity)
@@ -27,7 +28,7 @@ namespace Business.Concrete
             entity.QuizNumber = new Random(Guid.NewGuid().GetHashCode()).Next(10000000, 99999999).ToString();
             entity.OperationDate =DateTime.Now;
             entity.Status=Status.PASSIVE;
-            _quizDal.Add(entity);
+            _mongoQuizDal.Add(entity);
             return new SuccessResult(Messages.Added);
         }
 
@@ -36,7 +37,7 @@ namespace Business.Concrete
         {
             entity.OperationDate = DateTime.Now;
             entity.Status=Status.DELETED;
-            _quizDal.Update(entity);
+            _mongoQuizDal.Update(entity);
             return new SuccessResult(Messages.Deleted);
            /* _quizDal.Delete(entity);
             return new SuccessResult(Messages.Deleted);*/
@@ -45,81 +46,84 @@ namespace Business.Concrete
         [SecuredOperation("admin")]
         public IDataResult<List<Quiz>> GetAll()
         {
-            return new SuccessDataResult<List<Quiz>>(_quizDal.GetAll(), Messages.Listed);
+            return new SuccessDataResult<List<Quiz>>(_mongoQuizDal.GetAll(), Messages.Listed);
         }
-        
+
         [SecuredOperation("admin,user")]
-        public IDataResult<Quiz> GetById(int id)
+        public IDataResult<Quiz> GetById(string id)
         {
-            return new SuccessDataResult<Quiz>(_quizDal.Get(c => c.Id == id), Messages.Listed);
+            return new SuccessDataResult<Quiz>(_mongoQuizDal.Get(c => c.Id == id), Messages.Listed);
         }
+
+        [SecuredOperation("admin,user")]
 
         public IResult Update(Quiz entity)
         {
             entity.OperationDate = DateTime.Now;
-            _quizDal.Update(entity);
+            _mongoQuizDal.Update(entity);
             return new SuccessResult(Messages.Updated);
         }
 
         public IDataResult<Quiz> IsThereQuiz(string quizNumber)
         {
-            var quiz = _quizDal.Get(c => c.QuizNumber == quizNumber && c.Status == Status.ACTIVE);
+            var quiz = _mongoQuizDal.Get(c => c.QuizNumber == quizNumber && c.Status == Status.ACTIVE);
             if (quiz==null)
             {
                 return new ErrorDataResult<Quiz>(Messages.QuizNotFound);
             }
-            return new SuccessDataResult<Quiz>();
+            return new SuccessDataResult<Quiz>(quiz);
         }
 
-        public IDataResult<QuizDto> GetQuizDetail(int id)
+        public IDataResult<Quiz> GetQuizByQuizNumber(string quizNumber,Status status)
         {
-            return new SuccessDataResult<QuizDto>(_quizDal.GetQuizDetail(id), Messages.Listed);
+            var quiz = _mongoQuizDal.Get(c => c.QuizNumber == quizNumber && c.Status == status);
+            if (quiz == null)
+            {
+                return new ErrorDataResult<Quiz>(Messages.QuizNotFound);
+            }
+            return new SuccessDataResult<Quiz>(quiz);
         }
 
-        public IDataResult<List<QuizDto>> GetQuizzesDetailByUserId(int id)
-        {
-            return new SuccessDataResult<List<QuizDto>>(_quizDal.GetAllQuizzesDetail(x => x.UserId == id), Messages.Listed);
-        }
 
-        public IResult ActivatedQuiz(int id)
+        public IResult ActivatedQuiz(string id)
         {
-            var quiz = _quizDal.Get(c => c.Id == id && c.Status == Status.PASSIVE);
+            var quiz = _mongoQuizDal.Get(c => c.Id == id && c.Status == Status.PASSIVE);
             if(quiz == null)
             {
                 return new ErrorResult(Messages.QuizNotFound);
             }
             quiz.Status=Status.ACTIVE;
-            _quizDal.Update(quiz);
+            _mongoQuizDal.Update(quiz);
             return new SuccessResult(Messages.ActivatedQuiz);
         }
 
-         public IResult StartedQuiz(int id)
+         public IResult StartedQuiz(string id)
         {
-            var quiz = _quizDal.Get(c => c.Id == id && c.Status == Status.ACTIVE);
+            var quiz = _mongoQuizDal.Get(c => c.Id == id && c.Status == Status.ACTIVE);
             if(quiz == null)
             {
                 return new ErrorResult(Messages.QuizNotFound);
             }
             quiz.Status=Status.STARTED;
-            _quizDal.Update(quiz);
+            _mongoQuizDal.Update(quiz);
             return new SuccessResult(Messages.StartedQuiz);
         }
 
-         public IResult CompletedQuiz(int id)
+         public IResult CompletedQuiz(string id)
         {
-            var quiz = _quizDal.Get(c => c.Id == id && c.Status == Status.STARTED);
+            var quiz = _mongoQuizDal.Get(c => c.Id == id && c.Status == Status.STARTED);
             if(quiz == null)
             {
                 return new ErrorResult(Messages.QuizNotFound);
             }
             quiz.Status=Status.COMPLETED;
-            _quizDal.Update(quiz);
+            _mongoQuizDal.Update(quiz);
             return new SuccessResult(Messages.CompletedQuiz);
         }
 
          public IDataResult<List<Quiz>> GetByUserQuizzes(int id)
         {
-            return new SuccessDataResult<List<Quiz>>(_quizDal.GetAll(x=>x.UserId==id), Messages.Listed);
+            return new SuccessDataResult<List<Quiz>>(_mongoQuizDal.GetAll(x=>x.UserId== id && x.Status != Status.DELETED), Messages.Listed);
         }
     }
 }

@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Core.Entities;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
-namespace Entities.Concrete
+public class QuestionOption : IEntity
 {
-    public class QuestionOption : IEntity
-    {
-        public int Id { get; set; } 
-        public string OptionContent { get; set; } 
-        // public string AnswerImage { get; set;
-        public bool IsCorrect { get; set; } 
-        public int QuestionId { get; set; }
-        public DateTime OperationDate { get; set; }
-    }
+    public string QuestionOptionA { get; set; }
+    public string QuestionOptionB { get; set; }
+    public string QuestionOptionC { get; set; }
+    public string QuestionOptionD { get; set; }
 }
