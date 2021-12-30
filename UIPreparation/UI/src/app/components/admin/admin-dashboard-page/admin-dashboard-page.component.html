@@ -1,3 +1,42 @@
 <div>
   <h1 >Admin Dashboard</h1>
 </div>
+<div class="bg-white pt-4">
+  <div class="container">
+    <div class="row">
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-11">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sınav Adı</th>
+            <th scope="col">Sınav Numarası</th>
+            <th scope="col">Sınav Durumu</th>
+            <th scope="col">İşlemler</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let quiz of quizList">
+            <td>{{quiz.quizName}}</td>
+            <td>{{quiz.quizNumber}}</td>
+            <td>{{quizStatus[quiz.status]}}</td>
+            <td>
+              <button class="btn btn-success" (click)="activatedQuiz(quiz)">Aktif Et</button>
+              <button class="btn btn-primary mx-2" (click)="editQuiz(quiz)">Düzenle</button>
+              <button class="btn btn-primary mx-2" (click)="quizPreparation(quiz)">Sınav Giriş</button>
+              <button class="btn btn-danger mx-2" *ngIf="quiz.status!=quizStatus.ACTIVE && quiz.status!=quizStatus.STARTED" (click)="deleteQuiz(quiz)">Sil</button>
+            </td>
+          </tr>
+          <tr *ngIf="quizList.length<1">
+            <td colspan="4">
+               <h5 class="quizz pt-1 mt-1 ll-4">Hiç Kayıt Bulunamadı</h5>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+
+</div>

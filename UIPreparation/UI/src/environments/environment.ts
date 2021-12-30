@@ -8,7 +8,7 @@ export const environment = {
 
   basePath : "https://localhost:44383/",
   authPath : "https://localhost:44383/api/Auth",
-  userPath : "https://localhost:44383/api/Users",
+  userServicePath : "https://localhost:44383/api/Users",
   quizTakerPath : "https://localhost:44383/api/QuizTakers",
   quizPath : "https://localhost:44383/api/Quizzes",
   questionPath : "https://localhost:44383/api/Questions",

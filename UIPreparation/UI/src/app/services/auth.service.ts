@@ -80,12 +80,12 @@ export class AuthService {
     return this.jwtHelper.decodeToken(this.token);
   }
   getCurrentUserRoles() {
-    let role=this.jwtHelper.decodeToken(this.token).role;
+    let role=this.jwtHelper.decodeToken(this.token).Role;
     if(role=="user") return true
     return false
   }
   getCurrentAdminRoles() {
-    let role=this.jwtHelper.decodeToken(this.token).role;
+    let role=this.jwtHelper.decodeToken(this.token).Role;
     if(role=="admin") return true
     return false
   }

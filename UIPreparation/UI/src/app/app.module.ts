@@ -1,3 +1,4 @@
+import { AuthorizationComponent } from './components/admin/authorization/authorization.component';
 import { UserPlayGameComponent } from './components/user/userPlayGame/userPlayGame.component';
 import { QuizPreparationCutomerComponent } from './components/quizPreparationCutomer/quizPreparationCutomer.component';
 import { LoginGuard } from './guards/login.guard';
@@ -55,7 +56,10 @@ const ngWizardConfig: NgWizardConfig = {
     QuestionListComponent,
     QuestionUpdateComponent,
     QuizWizardComponent,
-    QuizPreparationCutomerComponent, FormatTimePipe, UserPlayGameComponent
+    QuizPreparationCutomerComponent,
+     FormatTimePipe,
+      UserPlayGameComponent,
+      AuthorizationComponent
   ],
   imports: [
     BrowserModule,
