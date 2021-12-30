@@ -1,0 +1,160 @@
+.card-body {
+  padding: 0.5rem;
+}
+.list-group-item {
+  padding: 0.75rem;
+}
+.card:hover {
+  cursor: pointer;
+}
+.card-title:hover {
+  color: lightseagreen;
+}
+label#form_ {
+  font-size: 22px;
+}
+hr.new {
+  border-top: 1px solid grey;
+}
+#add-question {
+  border: 2px dashed grey;
+}
+.border-dashed-3 {
+  border: 3px dashed grey;
+}
+
+.btn.btn-light.btn-lg.border-dashed-3:hover {
+  opacity: 40%;
+}
+
+.sticky-offset {
+  top: 65px;
+}
+
+/* format text for options in play_game */
+.shad {
+  text-shadow: 1px 1px black;
+  color: white;
+  font-size: 1.75rem;
+}
+.shad2 {
+  text-shadow: 1px 1px black;
+  color: white;
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+@media (max-width: 425px) {
+  .row {
+    flex-direction: column;
+  }
+  #signUpForm {
+    padding: 0;
+  }
+}
+@font-face {
+  font-family: "myFirstFont";
+  src: url(./assets/font/TheNaturelTxt2.ttf);
+}
+@font-face {
+  font-family: "myFirstFont2";
+  src: url(./assets/font/MittenRightRegular.otf);
+}
+h1 {
+  font-family: "myFirstFont" !important;
+}
+.myFirstFont {
+  font-family: "myFirstFont" !important;
+}
+.quizz {
+  font-family: "myFirstFont2" !important;
+}
+.form-control.ng-valid.ng-touched {
+  border-color: #28a745;
+  border-right-width: 10px;
+}
+.form-control.ng-invalid.ng-touched {
+  border-color: #dc3545;
+  border-right-width: 10px;
+}
+.validate-error {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+.datatable-body {
+  box-shadow: none;
+  font-size: 16px;
+}
+.datatable-header-cell {
+  font-size: 17px;
+}
+.form-control {
+  border: 5 solid transparent;
+  border-radius: 5px;
+}
+.form-floating {
+  position: relative;
+}
+.form-floating > .form-control,
+.form-floating > .form-select {
+  height: calc(3.5rem + 2px);
+  line-height: 1.25;
+}
+.form-floating > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 1rem 0.75rem;
+  pointer-events: none;
+  border: 1px solid transparent;
+  transform-origin: 0 0;
+  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .form-floating > label {
+    transition: none;
+  }
+}
+.form-floating > .form-control {
+  padding: 1rem 0.75rem;
+}
+.form-floating > .form-control::-moz-placeholder {
+  color: transparent;
+}
+.form-floating > .form-control::placeholder {
+  color: transparent;
+}
+.form-floating > .form-control:not(:-moz-placeholder-shown) {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
+.form-floating > .form-control:focus,
+.form-floating > .form-control:not(:placeholder-shown) {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
+.form-floating > .form-control:-webkit-autofill {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
+.form-floating > .form-select {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
+.form-floating > .form-control:not(:-moz-placeholder-shown) ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+.form-floating > .form-control:-webkit-autofill ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}

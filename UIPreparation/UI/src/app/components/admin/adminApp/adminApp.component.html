@@ -1,0 +1,37 @@
+<nav class="navbar navbar-dark bg-dark text-light px-4">
+  <div clas="left-top-bar">
+    <img src="../../../assets/images/quizz.svg" width="150px" />
+  </div>
+  <div clas="left-top-bar">
+    <h2 class="quizz pt-1 mt-1">Admin</h2>
+  </div>
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  <div clas="right-top-bar">
+    <button type="button" class="btn btn-danger ms-0 me-4" (click)="logout()">Çıkış</button>
+  </div>
+</nav>
+
+<div class="vh-100 bg-light">
+  <div class="container">
+    <div class="row">
+      <div id="sidebar" class="col-md-2 bg-primary-gradient rounded-2 shadow-xl p-3">
+        <a routerLink="dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+          class="mb-3 btn btn-lg btn-primary text-start w-100"><i class="fas fa-tachometer-alt me-3"></i>
+          <span class="fw-light">Dashboard</span>
+        </a>
+        <a routerLink="authorization" routerLinkActive="active" class="mb-3 btn btn-lg btn-primary text-start w-100"><i
+            class="fas fa-car me-3"></i>
+          <span class="fw-light">Kullanıcılar</span>
+        </a>
+        <a routerLink="brands" routerLinkActive="active" class="mb-3 btn btn-lg btn-primary text-start w-100"><i
+            class="fab fa-bandcamp me-3"></i>
+          <span class="fw-light">Tüm Sınavlar</span>
+        </a>
+      </div>
+      <div class="col ps-5 pt-4">
+        <router-outlet></router-outlet>
+
+      </div>
+    </div>
+  </div>
+</div>

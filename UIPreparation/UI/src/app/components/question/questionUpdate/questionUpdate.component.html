@@ -1,0 +1,200 @@
+<div class=" bg-light">
+  <nav class="navbar navbar-dark text-light">
+    <div clas="left-top-bar">
+    </div>
+    <div clas="left-top-bar">
+      <h2 class="quizz pt-1 mt-1 text-dark">Soru Ekle-Düzenle</h2>
+    </div>
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+    <div clas="right-top-bar">
+
+    </div>
+  </nav>
+
+  <div class="container bg-light">
+    <form [formGroup]="questionForm">
+      <div class="row" style="margin:20px;">
+        <div class="col">
+          <div class="form-group">
+            <label id="form_" for="questionContent">Soru</label>
+            <input type="text" class="form-control form-control-lg" id="questionContent"
+              formControlName="questionContent" [(ngModel)]="question.questionContent">
+          </div>
+          <div *ngIf="questionForm.get('questionContent').invalid &&
+          questionForm.get('questionContent').errors &&
+        (questionForm.get('questionContent').dirty || questionForm.get('questionContent').touched)">
+            <small class="text-danger" *ngIf="questionForm.get('questionContent').hasError('required')">
+              <strong>Bu Alan Zorunludur</strong>
+            </small>
+            <small class="text-danger" *ngIf="questionForm.get('questionContent').hasError('minlength')">
+              <strong> Soru En Az {{questionForm.get('questionContent').errors.minlength.requiredLength}}
+                Karakter Olmalıdır.</strong>
+            </small>
+          </div>
+        </div>
+        <div class="col">
+          <label id="form_" for="questionImage">Soruya Resim Ekle</label>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="questionImage" formControlName="questionImage"
+              [(ngModel)]="question.questionImage">
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin:20px;">
+        <div class="col">
+          <label id="form_" for="questionDuration">Soru Süresi(Saniye)</label>
+          <input type="number" class="form-control form-control-lg" id="questionDuration"
+            formControlName="questionDuration" [(ngModel)]="question.questionDuration">
+          <div *ngIf="questionForm.get('questionDuration').invalid &&
+          questionForm.get('questionDuration').errors &&
+        (questionForm.get('questionDuration').dirty || questionForm.get('questionDuration').touched)">
+            <small class="text-danger" *ngIf="questionForm.get('questionDuration').hasError('required')">
+              <strong>Bu Alan Zorunludur</strong>
+            </small>
+          </div>
+        </div>
+        <div class="col">
+          <label id="form_" for="questionScore">Soru Skoru</label>
+          <input type="number" class="form-control form-control-lg" id="questionScore" formControlName="questionScore"
+            [(ngModel)]="question.questionScore">
+          <div *ngIf="questionForm.get('questionScore').invalid &&
+          questionForm.get('questionScore').errors &&
+        (questionForm.get('questionScore').dirty || questionForm.get('questionScore').touched)">
+            <small class="text-danger" *ngIf="questionForm.get('questionScore').hasError('required')">
+              <strong>Bu Alan Zorunludur</strong>
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin:20px;">
+        <div class="col">
+          <label id="form_" for="questionType">Soru Türü</label>
+          <select class="form-control form-control-lg" id="questionType" formControlName="questionType"
+            [(ngModel)]="question.questionType" (change)="changeQuestionType()">
+            <option [value]="questionType.TRUEORFALSE">True/False</option>
+            <option [value]="questionType.MULTIPLE">Çoklu Cevap</option>
+          </select>
+          <div *ngIf="questionForm.get('questionType').invalid &&
+          questionForm.get('questionType').errors &&
+        (questionForm.get('questionType').dirty || questionForm.get('questionType').touched)">
+            <small class="text-danger" *ngIf="questionForm.get('questionType').hasError('required')">
+              <strong>Bu Alan Zorunludur</strong>
+            </small>
+          </div>
+        </div>
+        <div class="col" *ngIf="question.questionType==0">
+          <label id="form_" for="answer">Cevap</label>
+          <div class="form-group my-2">
+            <input type="radio" class="btn-check" name="options-outlined" id="answerTrue" [value]="answerType.TRUE"
+              formControlName="correctAnswer" [(ngModel)]="question.correctAnswer">
+            <label class="btn btn-outline-success mx-2" for="answerTrue">TRUE</label>
+            <input type="radio" class="btn-check" name="false-answer" id="answerFalse" [value]="answerType.FALSE"
+              formControlName="correctAnswer" [(ngModel)]="question.correctAnswer">
+            <label class="btn btn-outline-danger mx-2" for="answerFalse">FALSE</label>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin:20px;" *ngIf="question.questionType==1">
+        <div class="col">
+          <input type="radio" class="btn-check" name="options-outlined" id="answerA"
+            [value]="answerType.ANSWERA" formControlName="correctAnswer" [(ngModel)]="question.correctAnswer">
+          <label class="btn btn-outline-success" for="answerA">A</label>
+          <div class="form-group my-2">
+            <input type="text" class="form-control form-control-lg" formControlName="answerA" id="answerA"
+              [(ngModel)]="questionOptions.questionOptionA">
+            <div *ngIf="questionForm.get('answerA').invalid &&
+          questionForm.get('answerA').errors &&
+        (questionForm.get('answerA').dirty || questionForm.get('answerA').touched)">
+              <small class="text-danger" *ngIf="questionForm.get('answerA').hasError('required')">
+                <strong>Bu Alan Zorunludur</strong>
+              </small>
+              <small class="text-danger" *ngIf="questionForm.get('answerA').hasError('minlength')">
+                <strong> Cevap En Az {{questionForm.get('answerA').errors.minlength.requiredLength}}
+                  Karakter Olmalıdır.</strong>
+              </small>
+            </div>
+
+          </div>
+        </div>
+        <div class="col">
+          <input type="radio" class="btn-check" name="options-outlined" id="answerB"
+            [value]="answerType.ANSWERB" formControlName="correctAnswer" [(ngModel)]="question.correctAnswer">
+          <label class="btn btn-outline-primary" for="answerB">B</label>
+          <div class="form-group my-2">
+            <input type="text" class="form-control form-control-lg" formControlName="answerB" id="answerB"
+              [(ngModel)]="questionOptions.questionOptionB">
+            <div *ngIf="questionForm.get('answerB').invalid &&
+          questionForm.get('answerB').errors &&
+        (questionForm.get('answerB').dirty || questionForm.get('answerB').touched)">
+              <small class="text-danger" *ngIf="questionForm.get('answerB').hasError('required')">
+                <strong>Bu Alan Zorunludur</strong>
+              </small>
+              <small class="text-danger" *ngIf="questionForm.get('answerB').hasError('minlength')">
+                <strong> Cevap En Az {{questionForm.get('answerB').errors.minlength.requiredLength}}
+                  Karakter Olmalıdır.</strong>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin:20px;" *ngIf="question.questionType==1">
+        <div class="col">
+          <input type="radio" class="btn-check" name="options-outlined" id="answerC"
+            [value]="answerType.ANSWERC" formControlName="correctAnswer" [(ngModel)]="question.correctAnswer">
+          <label class="btn btn-outline-warning" for="answerC">C</label>
+          <div class="form-group my-2">
+            <input type="text" class="form-control form-control-lg" formControlName="answerC" id="answerC"
+              [(ngModel)]="questionOptions.questionOptionC">
+            <div *ngIf="questionForm.get('answerC').invalid &&
+          questionForm.get('answerC').errors &&
+        (questionForm.get('answerC').dirty || questionForm.get('answerC').touched)">
+              <small class="text-danger" *ngIf="questionForm.get('answerC').hasError('required')">
+                <strong>Bu Alan Zorunludur</strong>
+              </small>
+              <small class="text-danger" *ngIf="questionForm.get('answerC').hasError('minlength')">
+                <strong> Cevap En Az {{questionForm.get('answerC').errors.minlength.requiredLength}}
+                  Karakter Olmalıdır.</strong>
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <input type="radio" class="btn-check" name="options-outlined" id="answerD"
+            [value]="answerType.ANSWERD" formControlName="correctAnswer" [(ngModel)]="question.correctAnswer">
+          <label class="btn btn-outline-danger" for="answerD">D</label>
+          <div class="form-group my-2">
+            <input type="text" class="form-control form-control-lg" formControlName="answerD" id="answerD"
+              [(ngModel)]="questionOptions.questionOptionD">
+            <div *ngIf="questionForm.get('answerD').invalid &&
+          questionForm.get('answerD').errors &&
+        (questionForm.get('answerD').dirty || questionForm.get('answerD').touched)">
+              <small class="text-danger" *ngIf="questionForm.get('answerD').hasError('required')">
+                <strong>Bu Alan Zorunludur</strong>
+              </small>
+              <small class="text-danger" *ngIf="questionForm.get('answerD').hasError('minlength')">
+                <strong> Cevap En Az {{questionForm.get('answerD').errors.minlength.requiredLength}}
+                  Karakter Olmalıdır.</strong>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-end" style="margin:20px;">
+        <div class="col-6">
+          <div *ngIf="questionForm.get('correctAnswer').invalid &&
+          questionForm.get('correctAnswer').errors &&
+        (questionForm.get('correctAnswer').dirty || questionForm.get('correctAnswer').touched)">
+            <small class="text-danger" *ngIf="questionForm.get('correctAnswer').hasError('required')">
+              <strong>Cevap Seçmek Zorunludur</strong>
+            </small>
+          </div>
+        </div>
+        <div class="col-2">
+          <button type="button" class="btn btn-success px-4 py-2" [disabled]="!questionForm.valid"
+            (click)="operationType==0?save():update()">Kaydet</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<input type="hidden" class="form-control form-control-lg" [(ngModel)]="questionOptions.questionOptionD">

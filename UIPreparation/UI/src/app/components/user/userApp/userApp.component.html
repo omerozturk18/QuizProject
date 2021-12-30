@@ -1,0 +1,26 @@
+<nav class="navbar navbar-dark bg-dark text-light px-4">
+  <div clas="left-top-bar">
+    <img src="../../../assets/images/quizz.svg" width="150px" />
+  </div>
+  <div clas="left-top-bar">
+    <h2 class="quizz pt-1 mt-1">User</h2>
+  </div>
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  <div clas="right-top-bar">
+    <button type="button" class="btn btn-success ms-0 me-4" (click)="getQuizList()">Sınav Listesi</button>
+    <button type="button" class="btn btn-danger ms-0 me-4" (click)="logout()">Çıkış</button>
+  </div>
+</nav>
+<div class="bg-light vh-100 pt-4">
+  <div class="container">
+      <div class="main-panel">
+        <div class="main-content">
+          <div class="content-overlay"></div>
+          <div class="content-wrapper">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

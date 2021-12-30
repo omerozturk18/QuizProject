@@ -1,0 +1,40 @@
+<div class="bg-light vh-100">
+  <nav class="navbar navbar-dark text-light">
+    <div clas="left-top-bar">
+    </div>
+    <div clas="left-top-bar">
+      <h2 class="quizz pt-1 mt-1 text-dark">Sınav Ekle-Düzenle</h2>
+    </div>
+    <div clas="right-top-bar">
+    </div>
+  </nav>
+  <div class="container">
+    <form [formGroup]="quizForm">
+      <div class="row" style="margin-left:40px;">
+        <div class="col-8">
+          <div class="form-group">
+            <label for="quizName" class="fs-4"><strong>Sınav İsmi</strong></label>
+            <input type="text" class="form-control form-control-lg" id="quizName" formControlName="quizName"
+              [(ngModel)]="quiz.quizName" placeholder="Sınav İsmi">
+          </div>
+          <div *ngIf="quizForm.get('quizName').invalid &&
+                quizForm.get('quizName').errors &&
+              (quizForm.get('quizName').dirty || quizForm.get('quizName').touched)">
+            <small class="text-danger" *ngIf="quizForm.get('quizName').hasError('required')">
+              <strong>Bu Alan Zorunludur</strong>
+            </small>
+            <small class="text-danger" *ngIf="quizForm.get('quizName').hasError('minlength')">
+              <strong> Sınav İsmi En Az {{quizForm.get('quizName').errors.minlength.requiredLength}}
+                Karakter Olmalıdır.</strong>
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4 d-flex justify-content-end" style="margin-left:40px;">
+        <div class="col-2"><button type="button" class="btn btn-success px-4 py-2 ms-0 me-4"
+            [disabled]="!quizForm.valid" (click)="save()">
+            İlerle</button></div>
+      </div>
+    </form>
+  </div>
+</div>

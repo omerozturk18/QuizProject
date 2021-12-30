@@ -1,0 +1,51 @@
+<div class="container pt-4">
+  <div class="form-group">
+    <ng-wizard [config]="config">
+      <ng-wizard-step [title]="'Sınav '" [description]="'Sınav Ekle'">
+        <app-quizUpdate [quiz]="quiz" (saveQuiz)="saveQuiz($any($event))"></app-quizUpdate>
+      </ng-wizard-step>
+      <ng-wizard-step [title]="'Sorular'" [description]="'Soru Listesi'">
+        <app-questionList [quiz]="quiz" (saveQuiz)="saveQuiz($any($event))"></app-questionList>
+      </ng-wizard-step>
+      <ng-wizard-step [title]="'Genel Bakış'" [description]="'Sınav Durumu'">
+        <nav class="navbar navbar-dark text-light bg-light">
+          <div clas="left-top-bar">
+          </div>
+          <div clas="left-top-bar">
+            <h2 class="quizz pt-1 mt-1 text-dark">Genel Durum</h2>
+          </div>
+          <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+          <div clas="right-top-bar">
+          </div>
+        </nav>
+        <div class="bg-light">
+          <div class="container">
+            <div class="row">
+              <div class="col-11 d-flex justify-content-end ">
+                <button class="btn btn-success" (click)="quizId!='0'?updateQuizService():saveQuizService()">Sınavı Kaydet</button>
+              </div>
+            </div>
+            <div class="row px-4">
+              <div class="col-3 mx-0 px-0">
+                <h3 class="quizz mb-4">Sınav Adı </h3>
+                <h3 class="quizz">Soru Sayısı </h3>
+              </div>
+              <div class="col-6 mx-0 px-0">
+                <h3 class="quizz mb-4 mt-0"><span class="badge bg-primary"> {{quiz.quizName}}</span></h3>
+                <h3 class="quizz"> <span class="badge bg-secondary"> {{quiz.questions.length}}</span></h3>
+              </div>
+            </div>
+
+            <div class="row d-flex justify-content-center">
+              <div class="col-11">
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </ng-wizard-step>
+    </ng-wizard>
+  </div>
+</div>

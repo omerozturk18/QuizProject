@@ -1,0 +1,42 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-light pb-4 d-flex justify-content-center">
+  <p class="text-center mb-0 quizz" style="font-size:45px;">
+    Join at <img  src="../../../assets/images/quizzRed.svg"width="220rem"> with Game PIN: <span class=" text-info">{{quizNumber}}</span><b id="game-pin"></b>
+  </p>
+</nav>
+<div class="container-fluid bg-light pt-4 vh-100">
+  <div class="row d-flex justify-content-center">
+    <div class="col-3 pl-0" >
+      <div class="row">
+        <div class="col-4 pl-0">
+          <p class="font-weight-bold text-center text-primary mb-0 myFirstFont" style="font-size:60px;">{{quizTakerList.length}}</p>
+        </div>
+      </div>
+      <div class="row" style="margin-top: -15px;">
+        <div class="col-4 pl-0">
+          <p class="font-weight-bold font-italic text-center  text-primary mb-0 myFirstFont" style="font-size:30px;">Oyuncu</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Oyuncular</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of quizTakerList">
+            <td>
+               <h5 class="quizz pt-1 mt-1 ll-4">{{item.userName}}</h5>
+            </td>
+          </tr>
+          <tr *ngIf="quizTakerList.length<1">
+            <td>
+               <h5 class="quizz pt-1 mt-1 ll-4">Henüz Oyuncu Katılmadı</h5>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
