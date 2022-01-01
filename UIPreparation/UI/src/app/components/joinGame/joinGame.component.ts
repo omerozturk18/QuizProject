@@ -16,10 +16,10 @@ import { QuizModelView } from 'src/app/models/QuizModelView';
   styleUrls: ['./joinGame.component.css']
 })
 export class JoinGameComponent implements OnInit {
-  quiz: QuizModelView=new QuizModelView();
+  quiz: QuizModelView = new QuizModelView();
   joinGameForm: FormGroup;
   isThereQuiz: boolean = false;
-  quizStatus=Status;
+  quizStatus = Status;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,26 +35,29 @@ export class JoinGameComponent implements OnInit {
   createJoinGameForm() {
     this.joinGameForm = this.formBuilder.group({
       quizNumber: ['', Validators.required],
-      userName: [{value: '', disabled: true}, Validators.required],
+      userName: [{ value: '', disabled: true }, Validators.required],
     });
   }
   isThereQuizCheck() {
-    this.quizService.isThereQuiz(this.joinGameForm.value.quizNumber).subscribe((response) => {
-      this.quiz = response.data;
-      localStorage.setItem("QUIZNUMBER", response.data.quizNumber);
-      this.toastrService.success("Lütfen Kullanıcı Adı Giriniz");
-      this.joinGameForm.controls.userName.enable();
-    });
+    if (this.joinGameForm.valid) {
+      this.quizService.isThereQuiz(this.joinGameForm.value.quizNumber).subscribe((response) => {
+        this.quiz = response.data;
+        localStorage.setItem("QUIZNUMBER", response.data.quizNumber);
+        this.toastrService.success("Lütfen Kullanıcı Adı Giriniz");
+        this.joinGameForm.controls.userName.enable();
+      });
+    } else this.toastrService.error("Zorunlu Alanı Doldur")
+
   }
   joinGame() {
-    let quizTaker:QuizTaker=new QuizTaker();
-    quizTaker.quizNumber=this.quiz.quizNumber;
-    quizTaker.userName=this.joinGameForm.value.userName;
-    quizTaker.questionId= "0";
-    quizTaker.score=0;
+    let quizTaker: QuizTaker = new QuizTaker();
+    quizTaker.quizNumber = this.quiz.quizNumber;
+    quizTaker.userName = this.joinGameForm.value.userName;
+    quizTaker.questionId = "0";
+    quizTaker.score = 0;
     this.quizTakerService.isThereUserInQuiz(quizTaker).subscribe((response) => {
       localStorage.setItem("GAMER", response.data.id);
-      this.router.navigateByUrl("quizPreparation/"+this.quiz.quizNumber);
+      this.router.navigateByUrl("quizPreparation/" + this.quiz.quizNumber);
     });
   }
 }

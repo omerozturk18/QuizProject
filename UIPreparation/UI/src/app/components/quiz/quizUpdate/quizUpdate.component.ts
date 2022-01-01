@@ -34,7 +34,6 @@ export class QuizUpdateComponent implements OnInit {
     if (this.quizForm.valid) {
       let user=this.authService.getCurrentUser();
         this.quiz.userId=user.UserId;
-        alert(user.UserId)
       this.saveQuiz.emit(this.quiz);
     }else{
       this.toastrService.error("Sınav İsmi Zorunludur.")

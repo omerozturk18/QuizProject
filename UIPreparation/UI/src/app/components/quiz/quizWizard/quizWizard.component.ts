@@ -94,7 +94,7 @@ export class QuizWizardComponent implements OnInit {
   }
   saveQuizService(){
     let user=this.authService.getCurrentUser();
-    this.quiz.userId=user.UserId;
+    this.quiz.userId=Number(user.UserId);
     this.quiz.status=Status.PASSIVE;
     this.quizService.addQuiz(this.quiz).subscribe(response=>{
       this.toastrService.success(response.message);
@@ -103,7 +103,7 @@ export class QuizWizardComponent implements OnInit {
   }
   updateQuizService(){
     let user=this.authService.getCurrentUser();
-    this.quiz.userId=user.UserId;
+    this.quiz.userId=Number(user.UserId);
     this.quiz.status=Status.PASSIVE;
     this.quizService.updateQuiz(this.quiz).subscribe(response=>{
       this.toastrService.success(response.message);
