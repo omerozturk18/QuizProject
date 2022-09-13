@@ -32,10 +32,6 @@ namespace WepAPI
 
             services.AddControllers();
 
-            //Bizim yerimize newleme iþlei yapar AddSingleton IX istedðinde X ver
-            /* services.AddSingleton<IBrandService, BrandManager>();
-             services.AddSingleton<IBrandDal, EfBrandDal>();*/
-
             services.AddCors(options =>
             {
                 options.AddPolicy(CorsPolicy,
@@ -85,7 +81,7 @@ namespace WepAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(CorsPolicy);//adressden gelene tüm operasyonlara izin verir 
+            app.UseCors(CorsPolicy);//adressden gelene tÃ¼m operasyonlara izin verir 
 
             app.UseHttpsRedirection();
 
